@@ -272,27 +272,33 @@
 				<div class="inner">
 					<h2 id="contact-heading">Susisiekite su mumis</h2>
 					<div class="split style1">
-						<section aria-label="Kontaktų forma">
-							<form id="contactForm" name="contact" method="post" aria-label="Susisiekimo forma">
-								<div class="fields">
-									<div class="field half">
-										<label for="name">Vardas <span aria-label="privalomas laukas">*</span></label>
-										<input type="text" name="name" id="name" aria-required="true" required autocomplete="name" placeholder="Jūsų vardas" />
-									</div>
-									<div class="field half">
-										<label for="email">El. paštas <span aria-label="privalomas laukas">*</span></label>
-										<input type="email" name="email" id="email" aria-required="true" required autocomplete="email" placeholder="jusu@pastas.lt" />
-									</div>
-									<div class="field">
-										<label for="message">Žinutė <span aria-label="privalomas laukas">*</span></label>
-										<textarea name="message" id="message" rows="5" aria-required="true" required placeholder="Jūsų žinutė..."></textarea>
-									</div>
+					<section aria-label="Kontaktų forma">
+						<form action="https://formsubmit.co/elektrosdarbai3@gmail.com" method="POST" name="contact" aria-label="Susisiekimo forma">
+							<!-- FormSubmit Configuration -->
+							<input type="hidden" name="_subject" value="Nauja žinutė iš elektros-sprendimai.lt">
+							<input type="hidden" name="_captcha" value="false">
+							<input type="hidden" name="_template" value="table">
+							<input type="hidden" name="_next" value="https://elektros-sprendimai-o9d2ajg9w-dans-projects-f75f1d52.vercel.app/#success">
+							
+							<div class="fields">
+								<div class="field half">
+									<label for="name">Vardas <span aria-label="privalomas laukas">*</span></label>
+									<input type="text" name="name" id="name" aria-required="true" required autocomplete="name" placeholder="Jūsų vardas" />
 								</div>
-								<ul class="actions">
-									<li><button type="submit" class="button submit" aria-label="Siųsti kontaktinę žinutę">Siųsti žinutę</button></li>
-								</ul>
-							</form>
-						</section>
+								<div class="field half">
+									<label for="email">El. paštas <span aria-label="privalomas laukas">*</span></label>
+									<input type="email" name="email" id="email" aria-required="true" required autocomplete="email" placeholder="jusu@pastas.lt" />
+								</div>
+								<div class="field">
+									<label for="message">Žinutė <span aria-label="privalomas laukas">*</span></label>
+									<textarea name="message" id="message" rows="5" aria-required="true" required placeholder="Jūsų žinutė..."></textarea>
+								</div>
+							</div>
+							<ul class="actions">
+								<li><button type="submit" class="button submit" aria-label="Siųsti kontaktinę žinutę">Siųsti žinutę</button></li>
+							</ul>
+						</form>
+					</section>
 						<section aria-label="Kontaktinė informacija">
 							<ul class="contact">
 								<li itemscope itemtype="https://schema.org/PostalAddress">
@@ -344,60 +350,18 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-	<script>
-		// Wait for page to fully load
+		
+		<!-- Success Message Script -->
+		<script>
+		// Show success message if redirected after form submission
 		window.addEventListener('load', function() {
-			// Contact form handler
-			var form = document.getElementById('contactForm');
-			if (form) {
-				form.addEventListener('submit', function(e) {
-					e.preventDefault();
-					e.stopPropagation();
-					
-					var name = document.getElementById('name').value.trim();
-					var email = document.getElementById('email').value.trim();
-					var message = document.getElementById('message').value.trim();
-					
-					// Validation
-					if (name === '') {
-						alert('Prašome įvesti vardą');
-						document.getElementById('name').focus();
-						return false;
-					}
-					
-					if (email === '') {
-						alert('Prašome įvesti el. paštą');
-						document.getElementById('email').focus();
-						return false;
-					}
-					
-					// Email validation regex
-					var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-					if (!emailRegex.test(email)) {
-						alert('Prašome įvesti teisingą el. pašto adresą');
-						document.getElementById('email').focus();
-						return false;
-					}
-					
-					if (message === '') {
-						alert('Prašome įvesti žinutę');
-						document.getElementById('message').focus();
-						return false;
-					}
-					
-					// All validation passed, create mailto link
-					var subject = 'Nauja žinutė iš svetainės nuo ' + name;
-					var body = 'Vardas: ' + name + '%0D%0A';
-					body += 'El. paštas: ' + email + '%0D%0A%0D%0A';
-					body += 'Žinutė:%0D%0A' + message;
-					
-					window.location.href = 'mailto:elektrosdarbai3@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + body;
-					
-					return false;
-				});
+			if (window.location.hash === '#success') {
+				alert('Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.');
+				// Remove hash from URL
+				history.replaceState(null, null, ' ');
 			}
 		});
-	</script>
+		</script>
 
 </body>
 </html>
