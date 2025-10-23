@@ -195,23 +195,44 @@
 			opacity: 1;
 		}
 		
+		/* Desktop - ensure sidebar doesn't overlap content */
+		@media screen and (min-width: 1281px) {
+			.mobile-menu-toggle {
+				display: none !important;
+			}
+			
+			.mobile-menu-overlay {
+				display: none !important;
+			}
+			
+			#sidebar {
+				position: fixed;
+				z-index: 100;
+			}
+		}
+		
 		/* Mobile responsive */
 		@media screen and (max-width: 1280px) {
 			.mobile-menu-toggle {
-				display: flex;
+				display: flex !important;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
 			}
 			
 			#sidebar {
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 18em;
+				height: 100vh;
 				transform: translateX(-100%);
 				transition: transform 0.3s ease;
+				z-index: 10000;
 			}
 			
 			#sidebar.active {
 				transform: translateX(0);
-				z-index: 10000;
 			}
 			
 			body.menu-open {
@@ -456,59 +477,85 @@
 		
 	<!-- Mobile Menu and Form Validation Script -->
 	<script>
-	window.addEventListener('load', function() {
-		// Mobile Hamburger Menu
-		var menuToggle = document.getElementById('mobile-menu-toggle');
-		var sidebar = document.getElementById('sidebar');
-		var overlay = document.getElementById('mobile-menu-overlay');
-		var menuLinks = document.querySelectorAll('.menu-link');
-		
-		if (menuToggle && sidebar && overlay) {
-			// Toggle menu
-			menuToggle.addEventListener('click', function() {
+	(function() {
+		// Wait for DOM to be fully loaded
+		function initMobileMenu() {
+			var menuToggle = document.getElementById('mobile-menu-toggle');
+			var sidebar = document.getElementById('sidebar');
+			var overlay = document.getElementById('mobile-menu-overlay');
+			var menuLinks = document.querySelectorAll('.menu-link');
+			
+			console.log('Mobile menu init:', {menuToggle, sidebar, overlay, menuLinksCount: menuLinks.length});
+			
+			if (!menuToggle || !sidebar || !overlay) {
+				console.error('Mobile menu elements not found');
+				return;
+			}
+			
+			// Toggle menu function
+			function toggleMenu() {
 				var isActive = sidebar.classList.contains('active');
+				console.log('Toggle menu, isActive:', isActive);
 				
 				if (isActive) {
-					// Close menu
-					sidebar.classList.remove('active');
-					overlay.classList.remove('active');
-					menuToggle.classList.remove('active');
-					document.body.classList.remove('menu-open');
-					menuToggle.setAttribute('aria-expanded', 'false');
-					menuToggle.setAttribute('aria-label', 'Atidaryti meniu');
+					closeMenu();
 				} else {
-					// Open menu
-					sidebar.classList.add('active');
-					overlay.classList.add('active');
-					menuToggle.classList.add('active');
-					document.body.classList.add('menu-open');
-					menuToggle.setAttribute('aria-expanded', 'true');
-					menuToggle.setAttribute('aria-label', 'Uždaryti meniu');
+					openMenu();
 				}
-			});
+			}
 			
-			// Close menu when clicking overlay
-			overlay.addEventListener('click', function() {
+			function openMenu() {
+				sidebar.classList.add('active');
+				overlay.classList.add('active');
+				menuToggle.classList.add('active');
+				document.body.classList.add('menu-open');
+				menuToggle.setAttribute('aria-expanded', 'true');
+				menuToggle.setAttribute('aria-label', 'Uždaryti meniu');
+				console.log('Menu opened');
+			}
+			
+			function closeMenu() {
 				sidebar.classList.remove('active');
 				overlay.classList.remove('active');
 				menuToggle.classList.remove('active');
 				document.body.classList.remove('menu-open');
 				menuToggle.setAttribute('aria-expanded', 'false');
 				menuToggle.setAttribute('aria-label', 'Atidaryti meniu');
+				console.log('Menu closed');
+			}
+			
+			// Toggle menu on button click
+			menuToggle.addEventListener('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				toggleMenu();
+			});
+			
+			// Close menu when clicking overlay
+			overlay.addEventListener('click', function(e) {
+				e.preventDefault();
+				closeMenu();
 			});
 			
 			// Close menu when clicking menu link
 			menuLinks.forEach(function(link) {
 				link.addEventListener('click', function() {
-					sidebar.classList.remove('active');
-					overlay.classList.remove('active');
-					menuToggle.classList.remove('active');
-					document.body.classList.remove('menu-open');
-					menuToggle.setAttribute('aria-expanded', 'false');
-					menuToggle.setAttribute('aria-label', 'Atidaryti meniu');
+					setTimeout(closeMenu, 100); // Small delay for smooth transition
 				});
 			});
+			
+			console.log('Mobile menu initialized successfully');
 		}
+		
+		// Initialize when page loads
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initMobileMenu);
+		} else {
+			initMobileMenu();
+		}
+	})();
+	
+	window.addEventListener('load', function() {
 		
 		// Show success message if redirected after form submission
 		if (window.location.hash === '#success') {
