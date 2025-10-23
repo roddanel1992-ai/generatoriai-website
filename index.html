@@ -351,17 +351,69 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		
-		<!-- Success Message Script -->
-		<script>
+	<!-- Form Validation and Success Message Script -->
+	<script>
+	window.addEventListener('load', function() {
 		// Show success message if redirected after form submission
-		window.addEventListener('load', function() {
-			if (window.location.hash === '#success') {
-				alert('Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.');
-				// Remove hash from URL
-				history.replaceState(null, null, ' ');
-			}
-		});
-		</script>
+		if (window.location.hash === '#success') {
+			alert('Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.');
+			// Remove hash from URL
+			history.replaceState(null, null, ' ');
+		}
+		
+		// Form validation
+		var contactForm = document.querySelector('form[name="contact"]');
+		if (contactForm) {
+			contactForm.addEventListener('submit', function(e) {
+				var name = document.getElementById('name').value.trim();
+				var email = document.getElementById('email').value.trim();
+				var message = document.getElementById('message').value.trim();
+				
+				// Validate name
+				if (name === '' || name.length < 2) {
+					e.preventDefault();
+					alert('Prašome įvesti vardą (mažiausiai 2 simboliai)');
+					document.getElementById('name').focus();
+					return false;
+				}
+				
+				// Validate email
+				if (email === '') {
+					e.preventDefault();
+					alert('Prašome įvesti el. pašto adresą');
+					document.getElementById('email').focus();
+					return false;
+				}
+				
+				// Email format validation
+				var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+				if (!emailRegex.test(email)) {
+					e.preventDefault();
+					alert('Prašome įvesti teisingą el. pašto adresą (pvz.: vardas@pastas.lt)');
+					document.getElementById('email').focus();
+					return false;
+				}
+				
+				// Validate message
+				if (message === '' || message.length < 10) {
+					e.preventDefault();
+					alert('Prašome įvesti žinutę (mažiausiai 10 simbolių)');
+					document.getElementById('message').focus();
+					return false;
+				}
+				
+				// All validation passed - show loading message
+				var submitBtn = contactForm.querySelector('button[type="submit"]');
+				if (submitBtn) {
+					submitBtn.disabled = true;
+					submitBtn.textContent = 'Siunčiama...';
+				}
+				
+				return true;
+			});
+		}
+	});
+	</script>
 
 </body>
 </html>
