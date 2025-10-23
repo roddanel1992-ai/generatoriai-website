@@ -130,50 +130,49 @@
 		.mobile-menu-toggle {
 			display: none;
 			position: fixed;
-			top: 1.5rem;
-			right: 1.5rem;
-			z-index: 10001;
-			width: 50px;
-			height: 50px;
+			top: 1rem;
+			left: 1rem;
+			z-index: 10002;
+			width: 3.5em;
+			height: 3.5em;
 			background: #312450;
 			border: none;
-			border-radius: 8px;
+			border-radius: 4px;
 			cursor: pointer;
-			padding: 10px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+			padding: 0;
+			box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
 			transition: all 0.3s ease;
 		}
 		
 		.mobile-menu-toggle:hover {
 			background: #5e42a6;
-			transform: scale(1.05);
-		}
-		
-		.mobile-menu-toggle:active {
-			transform: scale(0.95);
 		}
 		
 		.mobile-menu-toggle span {
 			display: block;
-			width: 100%;
-			height: 3px;
+			width: 1.5em;
+			height: 2px;
 			background: #ffffff;
-			border-radius: 2px;
-			margin: 5px 0;
+			margin: 0 auto 0.35em auto;
 			transition: all 0.3s ease;
+			position: relative;
+		}
+		
+		.mobile-menu-toggle span:first-child {
+			margin-top: 0.7em;
 		}
 		
 		/* Hamburger animation when active */
-		.mobile-menu-toggle.active span:nth-child(1) {
-			transform: rotate(45deg) translate(8px, 8px);
+		body.is-menu-visible .mobile-menu-toggle span:nth-child(1) {
+			transform: rotate(45deg) translate(0.4em, 0.4em);
 		}
 		
-		.mobile-menu-toggle.active span:nth-child(2) {
+		body.is-menu-visible .mobile-menu-toggle span:nth-child(2) {
 			opacity: 0;
 		}
 		
-		.mobile-menu-toggle.active span:nth-child(3) {
-			transform: rotate(-45deg) translate(7px, -7px);
+		body.is-menu-visible .mobile-menu-toggle span:nth-child(3) {
+			transform: rotate(-45deg) translate(0.4em, -0.4em);
 		}
 		
 		/* Mobile Menu Overlay */
@@ -184,59 +183,35 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: rgba(0, 0, 0, 0.7);
-			z-index: 9999;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 10000;
 			opacity: 0;
-			transition: opacity 0.3s ease;
+			transition: opacity 0.5s ease;
 		}
 		
-		.mobile-menu-overlay.active {
+		body.is-menu-visible .mobile-menu-overlay {
 			display: block;
 			opacity: 1;
 		}
 		
-		/* Desktop - ensure sidebar doesn't overlap content */
-		@media screen and (min-width: 1281px) {
+		/* Mobile responsive - only show hamburger on mobile */
+		@media screen and (max-width: 1280px) {
 			.mobile-menu-toggle {
-				display: none !important;
+				display: block;
 			}
 			
 			.mobile-menu-overlay {
-				display: none !important;
+				display: block;
 			}
 			
+			/* Override template's default mobile sidebar behavior */
 			#sidebar {
-				position: fixed;
-				z-index: 100;
-			}
-		}
-		
-		/* Mobile responsive */
-		@media screen and (max-width: 1280px) {
-			.mobile-menu-toggle {
-				display: flex !important;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
+				transform: translateX(-18em);
+				transition: transform 0.5s ease;
 			}
 			
-			#sidebar {
-				position: fixed;
-				left: 0;
-				top: 0;
-				width: 18em;
-				height: 100vh;
-				transform: translateX(-100%);
-				transition: transform 0.3s ease;
-				z-index: 10000;
-			}
-			
-			#sidebar.active {
+			body.is-menu-visible #sidebar {
 				transform: translateX(0);
-			}
-			
-			body.menu-open {
-				overflow: hidden;
 			}
 		}
 	</style>
@@ -255,11 +230,11 @@
 			<div class="inner">
 				<nav role="navigation" aria-label="Puslapio meniu">
 					<ul>
-						<li><a href="#intro" aria-label="Grįžti į pagrindinį puslapį" class="menu-link">Pagrindinis</a></li>
-						<li><a href="#generatoriaus_darbai" aria-label="Peržiūrėti atliekamus darbus" class="menu-link">Atliekami darbai</a></li>
-						<li><a href="#musu_paslaugos" aria-label="Susipažinti su mūsų paslaugomis" class="menu-link">Mūsų paslaugos</a></li>
-						<li><a href="#elektors_darbai" aria-label="Papildomos elektros paslaugos" class="menu-link">Papildomi darbai</a></li>
-						<li><a href="#three" aria-label="Susisiekti su mumis" class="menu-link">Kontaktai</a></li>
+						<li><a href="#intro" aria-label="Grįžti į pagrindinį puslapį">Pagrindinis</a></li>
+						<li><a href="#generatoriaus_darbai" aria-label="Peržiūrėti atliekamus darbus">Atliekami darbai</a></li>
+						<li><a href="#musu_paslaugos" aria-label="Susipažinti su mūsų paslaugomis">Mūsų paslaugos</a></li>
+						<li><a href="#elektors_darbai" aria-label="Papildomos elektros paslaugos">Papildomi darbai</a></li>
+						<li><a href="#three" aria-label="Susisiekti su mumis">Kontaktai</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -477,82 +452,31 @@
 		
 	<!-- Mobile Menu and Form Validation Script -->
 	<script>
+	// Simple Mobile Menu Toggle
 	(function() {
-		// Wait for DOM to be fully loaded
-		function initMobileMenu() {
-			var menuToggle = document.getElementById('mobile-menu-toggle');
-			var sidebar = document.getElementById('sidebar');
-			var overlay = document.getElementById('mobile-menu-overlay');
-			var menuLinks = document.querySelectorAll('.menu-link');
-			
-			console.log('Mobile menu init:', {menuToggle, sidebar, overlay, menuLinksCount: menuLinks.length});
-			
-			if (!menuToggle || !sidebar || !overlay) {
-				console.error('Mobile menu elements not found');
-				return;
-			}
-			
-			// Toggle menu function
-			function toggleMenu() {
-				var isActive = sidebar.classList.contains('active');
-				console.log('Toggle menu, isActive:', isActive);
-				
-				if (isActive) {
-					closeMenu();
-				} else {
-					openMenu();
-				}
-			}
-			
-			function openMenu() {
-				sidebar.classList.add('active');
-				overlay.classList.add('active');
-				menuToggle.classList.add('active');
-				document.body.classList.add('menu-open');
-				menuToggle.setAttribute('aria-expanded', 'true');
-				menuToggle.setAttribute('aria-label', 'Uždaryti meniu');
-				console.log('Menu opened');
-			}
-			
-			function closeMenu() {
-				sidebar.classList.remove('active');
-				overlay.classList.remove('active');
-				menuToggle.classList.remove('active');
-				document.body.classList.remove('menu-open');
-				menuToggle.setAttribute('aria-expanded', 'false');
-				menuToggle.setAttribute('aria-label', 'Atidaryti meniu');
-				console.log('Menu closed');
-			}
-			
-			// Toggle menu on button click
+		var menuToggle = document.getElementById('mobile-menu-toggle');
+		var overlay = document.getElementById('mobile-menu-overlay');
+		var menuLinks = document.querySelectorAll('#sidebar a');
+		
+		if (menuToggle) {
 			menuToggle.addEventListener('click', function(e) {
 				e.preventDefault();
-				e.stopPropagation();
-				toggleMenu();
+				document.body.classList.toggle('is-menu-visible');
 			});
-			
-			// Close menu when clicking overlay
-			overlay.addEventListener('click', function(e) {
-				e.preventDefault();
-				closeMenu();
-			});
-			
-			// Close menu when clicking menu link
-			menuLinks.forEach(function(link) {
-				link.addEventListener('click', function() {
-					setTimeout(closeMenu, 100); // Small delay for smooth transition
-				});
-			});
-			
-			console.log('Mobile menu initialized successfully');
 		}
 		
-		// Initialize when page loads
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', initMobileMenu);
-		} else {
-			initMobileMenu();
+		if (overlay) {
+			overlay.addEventListener('click', function() {
+				document.body.classList.remove('is-menu-visible');
+			});
 		}
+		
+		// Close menu when clicking menu links
+		menuLinks.forEach(function(link) {
+			link.addEventListener('click', function() {
+				document.body.classList.remove('is-menu-visible');
+			});
+		});
 	})();
 	
 	window.addEventListener('load', function() {
