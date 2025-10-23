@@ -199,53 +199,39 @@
 			opacity: 1;
 		}
 		
-		/* Desktop - content should not overlap with sidebar */
+		/* Desktop - normal template behavior */
 		@media screen and (min-width: 1281px) {
-			#wrapper {
-				margin-left: 18em;
-			}
-			
-			.mobile-menu-toggle {
-				display: none;
-			}
-			
+			.mobile-menu-toggle,
 			.mobile-menu-overlay {
 				display: none;
 			}
 		}
 		
-		/* Mobile responsive - only show hamburger on mobile */
+		/* Mobile responsive */
 		@media screen and (max-width: 1280px) {
 			.mobile-menu-toggle {
-				display: block !important;
-				visibility: visible !important;
-				opacity: 1 !important;
-			}
-			
-			.mobile-menu-overlay {
 				display: block;
 			}
 			
-			#wrapper {
-				margin-left: 0 !important;
-				padding-top: 4em;
+			body.is-menu-visible .mobile-menu-overlay {
+				display: block;
+				opacity: 1;
 			}
 			
-			/* Override template's default mobile sidebar behavior */
 			#sidebar {
-				position: fixed !important;
-				left: 0 !important;
-				top: 0 !important;
-				width: 18em !important;
-				height: 100vh !important;
-				overflow-y: auto !important;
-				transform: translateX(-18em) !important;
-				transition: transform 0.5s ease !important;
-				z-index: 10001 !important;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 18em;
+				height: 100vh;
+				overflow-y: auto;
+				transform: translateX(-18em);
+				transition: transform 0.3s ease;
+				z-index: 10001;
 			}
 			
 			body.is-menu-visible #sidebar {
-				transform: translateX(0) !important;
+				transform: translateX(0);
 			}
 		}
 	</style>
@@ -484,79 +470,37 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		
-	<!-- Mobile Menu Script - Simplified with direct manipulation -->
+	<!-- Mobile Menu Script - Clean and Simple -->
 	<script>
 	(function($) {
-		$(window).on('load', function() {
+		$(function() {
+			// Only init on mobile
+			if ($(window).width() > 1280) {
+				console.log('Desktop - menu script disabled');
+				return;
+			}
+			
+			var $body = $('body');
 			var $menuToggle = $('#mobile-menu-toggle');
 			var $overlay = $('#mobile-menu-overlay');
-			var $sidebar = $('#sidebar');
-			var $sidebarLinks = $sidebar.find('a');
-			var isOpen = false;
+			var $sidebarLinks = $('#sidebar a');
 			
-			console.log('Mobile menu loading...', {
-				toggle: $menuToggle.length,
-				overlay: $overlay.length,
-				sidebar: $sidebar.length
-			});
+			console.log('Mobile menu init');
 			
-			function openMenu() {
-				isOpen = true;
-				$sidebar.css({
-					'transform': 'translateX(0)',
-					'visibility': 'visible'
-				});
-				$overlay.css({
-					'display': 'block',
-					'opacity': '1'
-				});
-				$('body').css('overflow', 'hidden');
-				console.log('Menu OPENED');
-			}
-			
-			function closeMenu() {
-				isOpen = false;
-				$sidebar.css({
-					'transform': 'translateX(-100%)',
-					'visibility': 'hidden'
-				});
-				$overlay.css({
-					'display': 'none',
-					'opacity': '0'
-				});
-				$('body').css('overflow', '');
-				console.log('Menu CLOSED');
-			}
-			
-			// Initially close menu on mobile
-			if ($(window).width() <= 1280) {
-				closeMenu();
-			}
-			
-			// Toggle menu on hamburger click
-			$menuToggle.on('click touchend', function(e) {
+			$menuToggle.on('click', function(e) {
 				e.preventDefault();
-				e.stopPropagation();
-				if (isOpen) {
-					closeMenu();
-				} else {
-					openMenu();
-				}
+				$body.toggleClass('is-menu-visible');
+				console.log('Menu toggled');
 			});
 			
-			// Close menu on overlay click
-			$overlay.on('click touchend', function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				closeMenu();
+			$overlay.on('click', function() {
+				$body.removeClass('is-menu-visible');
+				console.log('Overlay clicked');
 			});
 			
-			// Close menu on sidebar link click
-			$sidebarLinks.on('click touchend', function() {
-				setTimeout(closeMenu, 300);
+			$sidebarLinks.on('click', function() {
+				$body.removeClass('is-menu-visible');
 			});
-			
-			console.log('Mobile menu initialized!');
 		});
 	})(jQuery);
 	
