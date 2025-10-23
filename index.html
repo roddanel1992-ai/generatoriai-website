@@ -199,23 +199,32 @@
 			opacity: 1;
 		}
 		
-		/* Desktop - normal template behavior */
+		/* Desktop - ensure content doesn't overlap */
 		@media screen and (min-width: 1281px) {
 			.mobile-menu-toggle,
 			.mobile-menu-overlay {
-				display: none;
+				display: none !important;
+			}
+			
+			#sidebar + #wrapper {
+				margin-left: 18em;
 			}
 		}
 		
-		/* Mobile responsive */
+		/* Mobile & Tablet responsive */
 		@media screen and (max-width: 1280px) {
 			.mobile-menu-toggle {
 				display: block;
 			}
 			
+			.mobile-menu-overlay {
+				pointer-events: none;
+			}
+			
 			body.is-menu-visible .mobile-menu-overlay {
 				display: block;
 				opacity: 1;
+				pointer-events: auto;
 			}
 			
 			#sidebar {
@@ -228,10 +237,16 @@
 				transform: translateX(-18em);
 				transition: transform 0.3s ease;
 				z-index: 10001;
+				background: #312450;
 			}
 			
 			body.is-menu-visible #sidebar {
 				transform: translateX(0);
+			}
+			
+			#sidebar + #wrapper {
+				margin-left: 0;
+				padding-top: 4em;
 			}
 		}
 	</style>
@@ -470,37 +485,46 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		
-	<!-- Mobile Menu Script - Clean and Simple -->
+	<!-- Mobile Menu Script -->
 	<script>
 	(function($) {
 		$(function() {
-			// Only init on mobile
-			if ($(window).width() > 1280) {
-				console.log('Desktop - menu script disabled');
-				return;
-			}
-			
 			var $body = $('body');
 			var $menuToggle = $('#mobile-menu-toggle');
 			var $overlay = $('#mobile-menu-overlay');
 			var $sidebarLinks = $('#sidebar a');
 			
-			console.log('Mobile menu init');
+			if (!$menuToggle.length) {
+				console.log('Menu toggle not found');
+				return;
+			}
 			
+			console.log('Mobile menu initialized');
+			
+			// Toggle menu on hamburger click
 			$menuToggle.on('click', function(e) {
 				e.preventDefault();
+				e.stopPropagation();
 				$body.toggleClass('is-menu-visible');
-				console.log('Menu toggled');
+				console.log('Menu toggled, visible:', $body.hasClass('is-menu-visible'));
 			});
 			
-			$overlay.on('click', function() {
+			// Close menu on overlay click
+			$overlay.on('click', function(e) {
+				e.preventDefault();
 				$body.removeClass('is-menu-visible');
-				console.log('Overlay clicked');
+				console.log('Overlay clicked - menu closed');
 			});
 			
+			// Close menu when clicking sidebar links
 			$sidebarLinks.on('click', function() {
-				$body.removeClass('is-menu-visible');
+				setTimeout(function() {
+					$body.removeClass('is-menu-visible');
+					console.log('Link clicked - menu closed');
+				}, 100);
 			});
+			
+			console.log('Menu handlers attached');
 		});
 	})(jQuery);
 	
