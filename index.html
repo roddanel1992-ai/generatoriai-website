@@ -484,45 +484,79 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		
-	<!-- Mobile Menu Script - Using jQuery for compatibility -->
+	<!-- Mobile Menu Script - Simplified with direct manipulation -->
 	<script>
 	(function($) {
-		$(document).ready(function() {
-			var $body = $('body');
+		$(window).on('load', function() {
 			var $menuToggle = $('#mobile-menu-toggle');
 			var $overlay = $('#mobile-menu-overlay');
 			var $sidebar = $('#sidebar');
 			var $sidebarLinks = $sidebar.find('a');
+			var isOpen = false;
 			
-			console.log('Mobile menu init - jQuery', {
+			console.log('Mobile menu loading...', {
 				toggle: $menuToggle.length,
 				overlay: $overlay.length,
-				sidebar: $sidebar.length,
-				links: $sidebarLinks.length
+				sidebar: $sidebar.length
 			});
 			
+			function openMenu() {
+				isOpen = true;
+				$sidebar.css({
+					'transform': 'translateX(0)',
+					'visibility': 'visible'
+				});
+				$overlay.css({
+					'display': 'block',
+					'opacity': '1'
+				});
+				$('body').css('overflow', 'hidden');
+				console.log('Menu OPENED');
+			}
+			
+			function closeMenu() {
+				isOpen = false;
+				$sidebar.css({
+					'transform': 'translateX(-100%)',
+					'visibility': 'hidden'
+				});
+				$overlay.css({
+					'display': 'none',
+					'opacity': '0'
+				});
+				$('body').css('overflow', '');
+				console.log('Menu CLOSED');
+			}
+			
+			// Initially close menu on mobile
+			if ($(window).width() <= 1280) {
+				closeMenu();
+			}
+			
 			// Toggle menu on hamburger click
-			$menuToggle.on('click', function(e) {
+			$menuToggle.on('click touchend', function(e) {
 				e.preventDefault();
 				e.stopPropagation();
-				$body.toggleClass('is-menu-visible');
-				console.log('Menu toggled, is-menu-visible:', $body.hasClass('is-menu-visible'));
+				if (isOpen) {
+					closeMenu();
+				} else {
+					openMenu();
+				}
 			});
 			
 			// Close menu on overlay click
-			$overlay.on('click', function(e) {
+			$overlay.on('click touchend', function(e) {
 				e.preventDefault();
-				$body.removeClass('is-menu-visible');
-				console.log('Overlay clicked, menu closed');
+				e.stopPropagation();
+				closeMenu();
 			});
 			
 			// Close menu on sidebar link click
-			$sidebarLinks.on('click', function() {
-				$body.removeClass('is-menu-visible');
-				console.log('Link clicked, menu closed');
+			$sidebarLinks.on('click touchend', function() {
+				setTimeout(closeMenu, 300);
 			});
 			
-			console.log('Mobile menu initialized successfully');
+			console.log('Mobile menu initialized!');
 		});
 	})(jQuery);
 	
