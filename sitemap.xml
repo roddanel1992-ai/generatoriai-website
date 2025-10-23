@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://elektros-sprendimai-oi0as3p06-dans-projects-f75f1d52.vercel.app/</loc>
+    <lastmod>2025-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://elektros-sprendimai-oi0as3p06-dans-projects-f75f1d52.vercel.app/images/generatorius.jpg</image:loc>
+      <image:title>Generatorių montavimas Vilniuje</image:title>
+      <image:caption>Profesionalus generatorių montavimas ir elektros darbai</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://elektros-sprendimai-oi0as3p06-dans-projects-f75f1d52.vercel.app/images/elektros_skydas.jpg</image:loc>
+      <image:title>Elektros skydo montavimas</image:title>
+      <image:caption>Elektros skydų surinkimas ir priežiūra</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://elektros-sprendimai-oi0as3p06-dans-projects-f75f1d52.vercel.app/images/shelly.jpg</image:loc>
+      <image:title>Išmanios valdymo sistemos</image:title>
+      <image:caption>Shelly ir kitos išmanios elektros valdymo sistemos</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Section: Generatorių darbai -->
+  <url>
+    <loc>https://elektros-sprendimai-oi0as3p06-dans-projects-f75f1d52.vercel.app/#generatoriaus_darbai</loc>
+    <lastmod>2025-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Section: Mūsų paslaugos -->
+  <url>
+    <loc>https://elektros-sprendimai-oi0as3p06-dans-projects-f75f1d52.vercel.app/#musu_paslaugos</loc>
+    <lastmod>2025-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Section: Papildomi darbai -->
+  <url>
+    <loc>https://elektros-sprendimai-oi0as3p06-dans-projects-f75f1d52.vercel.app/#elektors_darbai</loc>
+    <lastmod>2025-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Section: Kontaktai -->
+  <url>
+    <loc>https://elektros-sprendimai-oi0as3p06-dans-projects-f75f1d52.vercel.app/#three</loc>
+    <lastmod>2025-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
+

@@ -1,0 +1,7 @@
+foto video/
+*.mp4
+*.mov
+*.avi
+*.pdf
+web ideja/
+.DS_Store
