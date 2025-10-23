@@ -135,17 +135,22 @@
 			z-index: 10002;
 			width: 3.5em;
 			height: 3.5em;
-			background: #312450;
+			background: #5e42a6;
 			border: none;
 			border-radius: 4px;
 			cursor: pointer;
 			padding: 0;
 			box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
 			transition: all 0.3s ease;
+			outline: none;
 		}
 		
 		.mobile-menu-toggle:hover {
-			background: #5e42a6;
+			background: #b74e91;
+		}
+		
+		.mobile-menu-toggle:active {
+			background: #312450;
 		}
 		
 		.mobile-menu-toggle span {
@@ -212,7 +217,9 @@
 		/* Mobile responsive - only show hamburger on mobile */
 		@media screen and (max-width: 1280px) {
 			.mobile-menu-toggle {
-				display: block;
+				display: block !important;
+				visibility: visible !important;
+				opacity: 1 !important;
 			}
 			
 			.mobile-menu-overlay {
@@ -220,17 +227,18 @@
 			}
 			
 			#wrapper {
-				margin-left: 0;
+				margin-left: 0 !important;
+				padding-top: 4em;
 			}
 			
 			/* Override template's default mobile sidebar behavior */
 			#sidebar {
-				transform: translateX(-18em);
+				transform: translateX(-18em) !important;
 				transition: transform 0.5s ease;
 			}
 			
 			body.is-menu-visible #sidebar {
-				transform: translateX(0);
+				transform: translateX(0) !important;
 			}
 		}
 	</style>
@@ -469,34 +477,47 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		
-	<!-- Mobile Menu and Form Validation Script -->
+	<!-- Mobile Menu Script - Using jQuery for compatibility -->
 	<script>
-	// Simple Mobile Menu Toggle
-	(function() {
-		var menuToggle = document.getElementById('mobile-menu-toggle');
-		var overlay = document.getElementById('mobile-menu-overlay');
-		var menuLinks = document.querySelectorAll('#sidebar a');
-		
-		if (menuToggle) {
-			menuToggle.addEventListener('click', function(e) {
+	(function($) {
+		$(document).ready(function() {
+			var $body = $('body');
+			var $menuToggle = $('#mobile-menu-toggle');
+			var $overlay = $('#mobile-menu-overlay');
+			var $sidebar = $('#sidebar');
+			var $sidebarLinks = $sidebar.find('a');
+			
+			console.log('Mobile menu init - jQuery', {
+				toggle: $menuToggle.length,
+				overlay: $overlay.length,
+				sidebar: $sidebar.length,
+				links: $sidebarLinks.length
+			});
+			
+			// Toggle menu on hamburger click
+			$menuToggle.on('click', function(e) {
 				e.preventDefault();
-				document.body.classList.toggle('is-menu-visible');
+				e.stopPropagation();
+				$body.toggleClass('is-menu-visible');
+				console.log('Menu toggled, is-menu-visible:', $body.hasClass('is-menu-visible'));
 			});
-		}
-		
-		if (overlay) {
-			overlay.addEventListener('click', function() {
-				document.body.classList.remove('is-menu-visible');
+			
+			// Close menu on overlay click
+			$overlay.on('click', function(e) {
+				e.preventDefault();
+				$body.removeClass('is-menu-visible');
+				console.log('Overlay clicked, menu closed');
 			});
-		}
-		
-		// Close menu when clicking menu links
-		menuLinks.forEach(function(link) {
-			link.addEventListener('click', function() {
-				document.body.classList.remove('is-menu-visible');
+			
+			// Close menu on sidebar link click
+			$sidebarLinks.on('click', function() {
+				$body.removeClass('is-menu-visible');
+				console.log('Link clicked, menu closed');
 			});
+			
+			console.log('Mobile menu initialized successfully');
 		});
-	})();
+	})(jQuery);
 	
 	window.addEventListener('load', function() {
 		
