@@ -96,33 +96,37 @@
 		</script>
 		<style>
 			/* Make images in elektors_darbai section half the height */
-			#elektors_darbai section {
-				min-height: 0;
-			}
-			#elektors_darbai .image {
-				height: 20vh;
-				min-height: 20vh;
-			}
-			#elektors_darbai .image img {
-				height: 100%;
-				object-fit: cover;
-			}
-		/* Reduce padding and content area height */
-		#elektors_darbai .content {
-			padding: 2em 2em;
+		#elektors_darbai section {
+			min-height: 0;
 		}
-		#elektors_darbai .content .inner {
-			padding: 0;
-		}
-		#elektors_darbai .content h2 {
-			font-size: 1.2em;
-			margin: 0;
-		}
-		/* Make images circular - keep original layout */
-		#elektors_darbai .image img {
+		
+		/* Make images circular */
+		#elektors_darbai .image {
+			width: 20em;
+			height: 20em;
+			min-height: 20em;
 			border-radius: 50%;
+			overflow: hidden;
+			flex-shrink: 0;
+		}
+		
+		#elektors_darbai .image img {
+			width: 100%;
+			height: 100%;
 			object-fit: cover;
 		}
+		
+	/* Reduce padding and content area height */
+	#elektors_darbai .content {
+		padding: 2em 2em;
+	}
+	#elektors_darbai .content .inner {
+		padding: 0;
+	}
+	#elektors_darbai .content h2 {
+		font-size: 1.2em;
+		margin: 0;
+	}
 		/* Change musu_paslaugos section background to match sidebar */
 		#musu_paslaugos {
 			background: #312450;
