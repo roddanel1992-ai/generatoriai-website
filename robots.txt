@@ -1,14 +1,4 @@
-# robots.txt for Elektros Energijos Sprendimai
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://elektros-sprendimai-oi0as3p06-dans-projects-f75f1d52.vercel.app/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 10
-
-# Disallow unnecessary files
-Disallow: /assets/js/
-Disallow: /assets/sass/
-
+Sitemap: https://elektros-sprendimai.lt/sitemap.xml
