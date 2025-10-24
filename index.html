@@ -494,13 +494,43 @@
 	
 	<!-- Form Validation and Submission Script -->
 	<script>
-	window.addEventListener('load', function() {
-		var contactForm = document.getElementById('contactForm');
-		var formMessages = document.getElementById('form-messages');
-		
-		if (contactForm && formMessages) {
-			contactForm.addEventListener('submit', function(e) {
+	(function() {
+		window.addEventListener('load', function() {
+			var contactForm = document.getElementById('contactForm');
+			var formMessages = document.getElementById('form-messages');
+			
+			if (!contactForm || !formMessages) {
+				console.log('Form or messages div not found');
+				return;
+			}
+			
+			function showMessage(message, type) {
+				formMessages.textContent = message;
+				formMessages.style.display = 'block';
+				
+				if (type === 'success') {
+					formMessages.style.background = 'linear-gradient(to right, #5e42a6, #b74e91)';
+					formMessages.style.color = '#ffffff';
+				} else {
+					formMessages.style.background = '#d44';
+					formMessages.style.color = '#ffffff';
+				}
+				
+				// Scroll to message
+				formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+				
+				// Auto-hide after 10 seconds
+				setTimeout(function() {
+					formMessages.style.display = 'none';
+				}, 10000);
+			}
+			
+			// Handle form submission
+			contactForm.onsubmit = function(e) {
 				e.preventDefault();
+				e.stopPropagation();
+				
+				console.log('Form submission intercepted');
 				
 				// Get form values
 				var name = document.getElementById('name').value.trim();
@@ -509,14 +539,14 @@
 				
 				// Validate name
 				if (name === '' || name.length < 2) {
-					showMessage('Prašome įvesti vardą (mažiausiai 2 simboliai)', 'error');
+					showMessage('❌ Prašome įvesti vardą (mažiausiai 2 simboliai)', 'error');
 					document.getElementById('name').focus();
 					return false;
 				}
 				
 				// Validate email
 				if (email === '') {
-					showMessage('Prašome įvesti el. pašto adresą', 'error');
+					showMessage('❌ Prašome įvesti el. pašto adresą', 'error');
 					document.getElementById('email').focus();
 					return false;
 				}
@@ -524,82 +554,71 @@
 				// Email format validation
 				var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 				if (!emailRegex.test(email)) {
-					showMessage('Prašome įvesti teisingą el. pašto adresą (pvz.: vardas@pastas.lt)', 'error');
+					showMessage('❌ Prašome įvesti teisingą el. pašto adresą (pvz.: vardas@pastas.lt)', 'error');
 					document.getElementById('email').focus();
 					return false;
 				}
 				
 				// Validate message
 				if (message === '' || message.length < 10) {
-					showMessage('Prašome įvesti žinutę (mažiausiai 10 simbolių)', 'error');
+					showMessage('❌ Prašome įvesti žinutę (mažiausiai 10 simbolių)', 'error');
 					document.getElementById('message').focus();
 					return false;
 				}
 				
-				// All validation passed - show loading and submit
+				// All validation passed - show loading
 				var submitBtn = contactForm.querySelector('button[type="submit"]');
+				var originalBtnText = 'Siųsti žinutę';
+				
 				if (submitBtn) {
 					submitBtn.disabled = true;
 					submitBtn.textContent = 'Siunčiama...';
 				}
 				
-			// Submit form via AJAX to FormSubmit
-			var formData = new FormData(contactForm);
-			
-			fetch(contactForm.action, {
-				method: 'POST',
-				body: formData,
-				headers: {
-					'Accept': 'application/json'
-				}
-			})
-			.then(function(response) {
-				return response.json();
-			})
-			.then(function(data) {
-				if (data.success || data.message === 'Success') {
-					showMessage('✓ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
-					contactForm.reset();
-				} else {
-					showMessage('✗ Atsiprašome, įvyko klaida siunčiant žinutę. Prašome pabandyti dar kartą arba susisiekti telefonu.', 'error');
-				}
-			})
-			.catch(function(error) {
-				console.error('Form submission error:', error);
-				showMessage('✗ Atsiprašome, įvyko klaida siunčiant žinutę. Prašome pabandyti dar kartą arba susisiekti telefonu.', 'error');
-			})
-			.finally(function() {
-				if (submitBtn) {
-					submitBtn.disabled = false;
-					submitBtn.textContent = 'Siųsti žinutę';
-				}
-			});
+				showMessage('⏳ Siunčiama žinutė...', 'success');
+				
+				// Prepare form data
+				var formData = new FormData(contactForm);
+				
+				// Submit via AJAX
+				fetch(contactForm.action, {
+					method: 'POST',
+					body: formData,
+					headers: {
+						'Accept': 'application/json'
+					}
+				})
+				.then(function(response) {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json();
+				})
+				.then(function(data) {
+					console.log('FormSubmit response:', data);
+					
+					if (data.success === 'true' || data.success === true || data.message === 'Success') {
+						showMessage('✅ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
+						contactForm.reset();
+					} else {
+						showMessage('❌ Klaida: ' + (data.message || 'Nepavyko išsiųsti žinutės. Prašome susisiekti telefonu +370 607 94868'), 'error');
+					}
+				})
+				.catch(function(error) {
+					console.error('Form submission error:', error);
+					showMessage('❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868 arba elektrosdarbai3@gmail.com', 'error');
+				})
+				.finally(function() {
+					if (submitBtn) {
+						submitBtn.disabled = false;
+						submitBtn.textContent = originalBtnText;
+					}
+				});
 				
 				return false;
-			});
-		}
-		
-		function showMessage(message, type) {
-			formMessages.textContent = message;
-			formMessages.style.display = 'block';
-			
-			if (type === 'success') {
-				formMessages.style.background = 'linear-gradient(to right, #5e42a6, #b74e91)';
-				formMessages.style.color = '#ffffff';
-			} else {
-				formMessages.style.background = '#d44';
-				formMessages.style.color = '#ffffff';
-			}
-			
-			// Scroll to message
-			formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-			
-			// Auto-hide after 8 seconds
-			setTimeout(function() {
-				formMessages.style.display = 'none';
-			}, 8000);
-		}
-	});
+			};
+		});
+	})();
 	</script>
 
 </body>
