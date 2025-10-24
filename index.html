@@ -95,20 +95,41 @@
 		}
 		</script>
 		<style>
-			/* Make images in elektors_darbai section half the height */
-		#elektors_darbai section {
-			min-height: 0;
-		}
-		
-	/* Make images circular and smaller */
+		/* Gallery style for elektors_darbai section */
+	#elektors_darbai.spotlights {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 2em;
+		padding: 3em 2em;
+	}
+	
+	#elektors_darbai > section {
+		flex: 0 0 calc(33.333% - 2em);
+		min-width: 280px;
+		max-width: 350px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 1em;
+		padding: 2em 1.5em;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+	
+	#elektors_darbai > section:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+	}
+	
 	#elektors_darbai .image {
 		width: 12em;
 		height: 12em;
-		min-height: 12em;
 		border-radius: 50%;
 		overflow: hidden;
+		margin: 0 0 1.5em 0;
 		flex-shrink: 0;
-		margin: 2em;
 	}
 	
 	#elektors_darbai .image img {
@@ -122,20 +143,33 @@
 	#elektors_darbai .image:hover img {
 		opacity: 1;
 	}
-		
-	/* Reduce padding and content area height */
+	
 	#elektors_darbai .content {
-		padding: 1.5em 2em;
+		padding: 0;
+		background: none;
 	}
+	
 	#elektors_darbai .content .inner {
 		padding: 0;
 	}
-	#elektors_darbai .content h2 {
-		font-size: 1.2em;
-		margin: 0 0 0.5em 0;
+	
+	#elektors_darbai .content h3 {
+		font-size: 1.1em;
+		margin: 0;
+		color: #ffffff;
 	}
-	#elektors_darbai .content p {
-		margin: 0 0 1em 0;
+	
+	/* Responsive */
+	@media screen and (max-width: 980px) {
+		#elektors_darbai > section {
+			flex: 0 0 calc(50% - 2em);
+		}
+	}
+	
+	@media screen and (max-width: 736px) {
+		#elektors_darbai > section {
+			flex: 0 0 100%;
+		}
 	}
 		/* Change musu_paslaugos section background to match sidebar */
 		#musu_paslaugos {
