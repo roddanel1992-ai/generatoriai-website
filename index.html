@@ -41,9 +41,6 @@
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	
-	<!-- Google reCAPTCHA -->
-	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 		
 		<!-- Structured Data (JSON-LD) -->
 		<script type="application/ld+json">
@@ -423,7 +420,10 @@
 						<input type="hidden" name="_subject" value="Nauja žinutė iš elektros-sprendimai.lt">
 						<input type="hidden" name="_captcha" value="false">
 						<input type="hidden" name="_template" value="table">
-						<input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+						
+						<!-- Honeypot for bot protection (hidden field) -->
+						<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+						<input type="hidden" name="_form_time" id="form_time" value="">
 							
 							<div class="fields">
 								<div class="field half">
@@ -440,9 +440,12 @@
 							</div>
 						</div>
 						
-						<!-- reCAPTCHA -->
-						<div class="field">
-							<div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="margin: 1em 0;"></div>
+						<!-- Bot Protection Checkbox -->
+						<div class="field" style="margin: 1.5em 0;">
+							<label style="display: flex; align-items: center; cursor: pointer;">
+								<input type="checkbox" id="not_robot" name="not_robot" required style="margin-right: 0.5em; width: auto;">
+								<span style="font-weight: 600;">Aš nesu robotas <span style="color: #ff3333;">*</span></span>
+							</label>
 						</div>
 						
 						<ul class="actions">
@@ -514,6 +517,10 @@
 				return;
 			}
 			
+			// Set form load time for bot detection
+			var formLoadTime = new Date().getTime();
+			document.getElementById('form_time').value = formLoadTime;
+			
 			function showMessage(message, type) {
 				formMessages.textContent = message;
 				formMessages.style.display = 'block';
@@ -576,10 +583,27 @@
 				return false;
 			}
 			
-			// Validate reCAPTCHA
-			var recaptchaResponse = grecaptcha.getResponse();
-			if (!recaptchaResponse || recaptchaResponse.length === 0) {
+			// Validate "I'm not a robot" checkbox
+			var notRobotCheckbox = document.getElementById('not_robot');
+			if (!notRobotCheckbox.checked) {
 				showMessage('❌ Prašome patvirtinti, kad nesate robotas', 'error');
+				return false;
+			}
+			
+			// Check honeypot (if filled, it's a bot)
+			var honeypot = document.querySelector('input[name="_honey"]');
+			if (honeypot && honeypot.value !== '') {
+				console.log('Bot detected via honeypot');
+				showMessage('❌ Aptikta įtartina veikla. Prašome bandyti dar kartą.', 'error');
+				return false;
+			}
+			
+			// Check if form was filled too quickly (less than 3 seconds = likely bot)
+			var currentTime = new Date().getTime();
+			var timeDiff = (currentTime - formLoadTime) / 1000; // seconds
+			if (timeDiff < 3) {
+				console.log('Form filled too quickly:', timeDiff, 'seconds');
+				showMessage('❌ Prašome užpildyti formą lėčiau. Bandykite dar kartą.', 'error');
 				return false;
 			}
 			
@@ -596,7 +620,6 @@
 			
 			// Prepare form data
 			var formData = new FormData(contactForm);
-			formData.set('g-recaptcha-response', recaptchaResponse);
 				
 				// Submit via AJAX
 				fetch(contactForm.action, {
@@ -618,16 +641,15 @@
 				if (data.success === 'true' || data.success === true || data.message === 'Success') {
 					showMessage('✅ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
 					contactForm.reset();
-					grecaptcha.reset();
+					// Reset form load time for next submission
+					formLoadTime = new Date().getTime();
 				} else {
 					showMessage('❌ Klaida: ' + (data.message || 'Nepavyko išsiųsti žinutės. Prašome susisiekti telefonu +370 607 94868'), 'error');
-					grecaptcha.reset();
 				}
 			})
 			.catch(function(error) {
 				console.error('Form submission error:', error);
 				showMessage('❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868 arba elektrosdarbai3@gmail.com', 'error');
-				grecaptcha.reset();
 			})
 			.finally(function() {
 				if (submitBtn) {
