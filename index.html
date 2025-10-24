@@ -38,9 +38,12 @@
 		<meta name="geo.position" content="54.687157;25.279652" />
 		<meta name="ICBM" content="54.687157, 25.279652" />
 		
-		<!-- Stylesheets -->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	
+	<!-- Google reCAPTCHA -->
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 		
 		<!-- Structured Data (JSON-LD) -->
 		<script type="application/ld+json">
@@ -420,6 +423,7 @@
 						<input type="hidden" name="_subject" value="Nauja žinutė iš elektros-sprendimai.lt">
 						<input type="hidden" name="_captcha" value="false">
 						<input type="hidden" name="_template" value="table">
+						<input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 							
 							<div class="fields">
 								<div class="field half">
@@ -430,14 +434,20 @@
 									<label for="email">El. paštas <span aria-label="privalomas laukas">*</span></label>
 									<input type="email" name="email" id="email" aria-required="true" required autocomplete="email" placeholder="jusu@pastas.lt" />
 								</div>
-								<div class="field">
-									<label for="message">Žinutė <span aria-label="privalomas laukas">*</span></label>
-									<textarea name="message" id="message" rows="5" aria-required="true" required placeholder="Jūsų žinutė..."></textarea>
-								</div>
+							<div class="field">
+								<label for="message">Žinutė <span aria-label="privalomas laukas">*</span></label>
+								<textarea name="message" id="message" rows="5" aria-required="true" required placeholder="Jūsų žinutė..."></textarea>
 							</div>
-							<ul class="actions">
-								<li><button type="submit" class="button submit" aria-label="Siųsti kontaktinę žinutę">Siųsti žinutę</button></li>
-							</ul>
+						</div>
+						
+						<!-- reCAPTCHA -->
+						<div class="field">
+							<div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="margin: 1em 0;"></div>
+						</div>
+						
+						<ul class="actions">
+							<li><button type="submit" class="button submit" aria-label="Siųsti kontaktinę žinutę">Siųsti žinutę</button></li>
+						</ul>
 						</form>
 					</section>
 						<section aria-label="Kontaktinė informacija">
@@ -559,26 +569,34 @@
 					return false;
 				}
 				
-				// Validate message
-				if (message === '' || message.length < 10) {
-					showMessage('❌ Prašome įvesti žinutę (mažiausiai 10 simbolių)', 'error');
-					document.getElementById('message').focus();
-					return false;
-				}
-				
-				// All validation passed - show loading
-				var submitBtn = contactForm.querySelector('button[type="submit"]');
-				var originalBtnText = 'Siųsti žinutę';
+			// Validate message
+			if (message === '' || message.length < 10) {
+				showMessage('❌ Prašome įvesti žinutę (mažiausiai 10 simbolių)', 'error');
+				document.getElementById('message').focus();
+				return false;
+			}
+			
+			// Validate reCAPTCHA
+			var recaptchaResponse = grecaptcha.getResponse();
+			if (!recaptchaResponse || recaptchaResponse.length === 0) {
+				showMessage('❌ Prašome patvirtinti, kad nesate robotas', 'error');
+				return false;
+			}
+			
+			// All validation passed - show loading
+			var submitBtn = contactForm.querySelector('button[type="submit"]');
+			var originalBtnText = 'Siųsti žinutę';
 				
 				if (submitBtn) {
 					submitBtn.disabled = true;
 					submitBtn.textContent = 'Siunčiama...';
 				}
 				
-				showMessage('⏳ Siunčiama žinutė...', 'success');
-				
-				// Prepare form data
-				var formData = new FormData(contactForm);
+			showMessage('⏳ Siunčiama žinutė...', 'success');
+			
+			// Prepare form data
+			var formData = new FormData(contactForm);
+			formData.set('g-recaptcha-response', recaptchaResponse);
 				
 				// Submit via AJAX
 				fetch(contactForm.action, {
@@ -597,23 +615,26 @@
 				.then(function(data) {
 					console.log('FormSubmit response:', data);
 					
-					if (data.success === 'true' || data.success === true || data.message === 'Success') {
-						showMessage('✅ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
-						contactForm.reset();
-					} else {
-						showMessage('❌ Klaida: ' + (data.message || 'Nepavyko išsiųsti žinutės. Prašome susisiekti telefonu +370 607 94868'), 'error');
-					}
-				})
-				.catch(function(error) {
-					console.error('Form submission error:', error);
-					showMessage('❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868 arba elektrosdarbai3@gmail.com', 'error');
-				})
-				.finally(function() {
-					if (submitBtn) {
-						submitBtn.disabled = false;
-						submitBtn.textContent = originalBtnText;
-					}
-				});
+				if (data.success === 'true' || data.success === true || data.message === 'Success') {
+					showMessage('✅ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
+					contactForm.reset();
+					grecaptcha.reset();
+				} else {
+					showMessage('❌ Klaida: ' + (data.message || 'Nepavyko išsiųsti žinutės. Prašome susisiekti telefonu +370 607 94868'), 'error');
+					grecaptcha.reset();
+				}
+			})
+			.catch(function(error) {
+				console.error('Form submission error:', error);
+				showMessage('❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868 arba elektrosdarbai3@gmail.com', 'error');
+				grecaptcha.reset();
+			})
+			.finally(function() {
+				if (submitBtn) {
+					submitBtn.disabled = false;
+					submitBtn.textContent = originalBtnText;
+				}
+			});
 				
 				return false;
 			};
