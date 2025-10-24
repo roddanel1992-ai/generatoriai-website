@@ -412,14 +412,14 @@
 					<h2 id="contact-heading">Susisiekite su mumis</h2>
 					<div class="split style1">
 					<section aria-label="Kontaktų forma">
-						<!-- Form Messages -->
-						<div id="form-messages" style="display: none; margin-bottom: 2em; padding: 1.5em; border-radius: 0.5em; font-weight: 600;"></div>
-						
-						<form id="contactForm" action="https://formsubmit.co/elektrosdarbai3@gmail.com" method="POST" name="contact" aria-label="Susisiekimo forma">
-							<!-- FormSubmit Configuration -->
-							<input type="hidden" name="_subject" value="Nauja žinutė iš elektros-sprendimai.lt">
-							<input type="hidden" name="_captcha" value="false">
-							<input type="hidden" name="_template" value="table">
+					<!-- Form Messages -->
+					<div id="form-messages" style="display: none; margin-bottom: 2em; padding: 1.5em; border-radius: 0.5em; font-weight: 600;"></div>
+					
+					<form id="contactForm" action="https://formsubmit.co/ajax/elektrosdarbai3@gmail.com" method="POST" name="contact" aria-label="Susisiekimo forma">
+						<!-- FormSubmit Configuration -->
+						<input type="hidden" name="_subject" value="Nauja žinutė iš elektros-sprendimai.lt">
+						<input type="hidden" name="_captcha" value="false">
+						<input type="hidden" name="_template" value="table">
 							
 							<div class="fields">
 								<div class="field half">
@@ -478,7 +478,7 @@
 			<footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Generatoriaus energijos sprendimai. Visos teisės saugomos.</li>
+						<li>&copy; Elektros Energijos Sprendimai. Visos teisės saugomos.</li>
 					</ul>
 				</div>
 			</footer>
@@ -543,33 +543,37 @@
 					submitBtn.textContent = 'Siunčiama...';
 				}
 				
-				// Submit form via AJAX
-				var formData = new FormData(contactForm);
-				
-				fetch(contactForm.action, {
-					method: 'POST',
-					body: formData,
-					headers: {
-						'Accept': 'application/json'
-					}
-				})
-				.then(function(response) {
-					if (response.ok) {
-						showMessage('✓ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
-						contactForm.reset();
-					} else {
-						showMessage('✗ Atsiprašome, įvyko klaida siunčiant žinutę. Prašome pabandyti dar kartą arba susisiekti telefonu.', 'error');
-					}
-				})
-				.catch(function(error) {
+			// Submit form via AJAX to FormSubmit
+			var formData = new FormData(contactForm);
+			
+			fetch(contactForm.action, {
+				method: 'POST',
+				body: formData,
+				headers: {
+					'Accept': 'application/json'
+				}
+			})
+			.then(function(response) {
+				return response.json();
+			})
+			.then(function(data) {
+				if (data.success || data.message === 'Success') {
+					showMessage('✓ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
+					contactForm.reset();
+				} else {
 					showMessage('✗ Atsiprašome, įvyko klaida siunčiant žinutę. Prašome pabandyti dar kartą arba susisiekti telefonu.', 'error');
-				})
-				.finally(function() {
-					if (submitBtn) {
-						submitBtn.disabled = false;
-						submitBtn.textContent = 'Siųsti žinutę';
-					}
-				});
+				}
+			})
+			.catch(function(error) {
+				console.error('Form submission error:', error);
+				showMessage('✗ Atsiprašome, įvyko klaida siunčiant žinutę. Prašome pabandyti dar kartą arba susisiekti telefonu.', 'error');
+			})
+			.finally(function() {
+				if (submitBtn) {
+					submitBtn.disabled = false;
+					submitBtn.textContent = 'Siųsti žinutę';
+				}
+			});
 				
 				return false;
 			});
