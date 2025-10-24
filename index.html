@@ -289,7 +289,7 @@
 		<!-- Intro -->
 				<section id="intro" class="wrapper style1 fullscreen fade-up" aria-labelledby="main-heading">
 					<div class="inner">
-						<h1 id="main-heading">Elektros Energijos Sprendimai Vilniuje</h1>
+						<h1 id="main-heading">Elektros Energijos Sprendimai</h1>
 						<p class="lead">Profesionalūs generatorių montavimo, elektros skydų surinkimo ir elektros instaliacijos darbai. Parinksime jūsų poreikius atitinkantį generatorių, pajungsime bei apmokysime.</p>
 					</div>
 				</section>
@@ -412,12 +412,14 @@
 					<h2 id="contact-heading">Susisiekite su mumis</h2>
 					<div class="split style1">
 					<section aria-label="Kontaktų forma">
-						<form action="https://formsubmit.co/elektrosdarbai3@gmail.com" method="POST" name="contact" aria-label="Susisiekimo forma">
+						<!-- Form Messages -->
+						<div id="form-messages" style="display: none; margin-bottom: 2em; padding: 1.5em; border-radius: 0.5em; font-weight: 600;"></div>
+						
+						<form id="contactForm" action="https://formsubmit.co/elektrosdarbai3@gmail.com" method="POST" name="contact" aria-label="Susisiekimo forma">
 							<!-- FormSubmit Configuration -->
 							<input type="hidden" name="_subject" value="Nauja žinutė iš elektros-sprendimai.lt">
 							<input type="hidden" name="_captcha" value="false">
 							<input type="hidden" name="_template" value="table">
-							<input type="hidden" name="_next" value="https://elektros-sprendimai-o9d2ajg9w-dans-projects-f75f1d52.vercel.app/#success">
 							
 							<div class="fields">
 								<div class="field half">
@@ -490,37 +492,31 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	
-	<!-- Form Validation Script -->
+	<!-- Form Validation and Submission Script -->
 	<script>
 	window.addEventListener('load', function() {
+		var contactForm = document.getElementById('contactForm');
+		var formMessages = document.getElementById('form-messages');
 		
-		// Show success message if redirected after form submission
-		if (window.location.hash === '#success') {
-			alert('Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.');
-			// Remove hash from URL
-			history.replaceState(null, null, ' ');
-		}
-		
-		// Form validation
-		var contactForm = document.querySelector('form[name="contact"]');
-		if (contactForm) {
+		if (contactForm && formMessages) {
 			contactForm.addEventListener('submit', function(e) {
+				e.preventDefault();
+				
+				// Get form values
 				var name = document.getElementById('name').value.trim();
 				var email = document.getElementById('email').value.trim();
 				var message = document.getElementById('message').value.trim();
 				
 				// Validate name
 				if (name === '' || name.length < 2) {
-					e.preventDefault();
-					alert('Prašome įvesti vardą (mažiausiai 2 simboliai)');
+					showMessage('Prašome įvesti vardą (mažiausiai 2 simboliai)', 'error');
 					document.getElementById('name').focus();
 					return false;
 				}
 				
 				// Validate email
 				if (email === '') {
-					e.preventDefault();
-					alert('Prašome įvesti el. pašto adresą');
+					showMessage('Prašome įvesti el. pašto adresą', 'error');
 					document.getElementById('email').focus();
 					return false;
 				}
@@ -528,29 +524,76 @@
 				// Email format validation
 				var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 				if (!emailRegex.test(email)) {
-					e.preventDefault();
-					alert('Prašome įvesti teisingą el. pašto adresą (pvz.: vardas@pastas.lt)');
+					showMessage('Prašome įvesti teisingą el. pašto adresą (pvz.: vardas@pastas.lt)', 'error');
 					document.getElementById('email').focus();
 					return false;
 				}
 				
 				// Validate message
 				if (message === '' || message.length < 10) {
-					e.preventDefault();
-					alert('Prašome įvesti žinutę (mažiausiai 10 simbolių)');
+					showMessage('Prašome įvesti žinutę (mažiausiai 10 simbolių)', 'error');
 					document.getElementById('message').focus();
 					return false;
 				}
 				
-				// All validation passed - show loading message
+				// All validation passed - show loading and submit
 				var submitBtn = contactForm.querySelector('button[type="submit"]');
 				if (submitBtn) {
 					submitBtn.disabled = true;
 					submitBtn.textContent = 'Siunčiama...';
 				}
 				
-				return true;
+				// Submit form via AJAX
+				var formData = new FormData(contactForm);
+				
+				fetch(contactForm.action, {
+					method: 'POST',
+					body: formData,
+					headers: {
+						'Accept': 'application/json'
+					}
+				})
+				.then(function(response) {
+					if (response.ok) {
+						showMessage('✓ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
+						contactForm.reset();
+					} else {
+						showMessage('✗ Atsiprašome, įvyko klaida siunčiant žinutę. Prašome pabandyti dar kartą arba susisiekti telefonu.', 'error');
+					}
+				})
+				.catch(function(error) {
+					showMessage('✗ Atsiprašome, įvyko klaida siunčiant žinutę. Prašome pabandyti dar kartą arba susisiekti telefonu.', 'error');
+				})
+				.finally(function() {
+					if (submitBtn) {
+						submitBtn.disabled = false;
+						submitBtn.textContent = 'Siųsti žinutę';
+					}
+				});
+				
+				return false;
 			});
+		}
+		
+		function showMessage(message, type) {
+			formMessages.textContent = message;
+			formMessages.style.display = 'block';
+			
+			if (type === 'success') {
+				formMessages.style.background = 'linear-gradient(to right, #5e42a6, #b74e91)';
+				formMessages.style.color = '#ffffff';
+			} else {
+				formMessages.style.background = '#d44';
+				formMessages.style.color = '#ffffff';
+			}
+			
+			// Scroll to message
+			formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+			
+			// Auto-hide after 8 seconds
+			setTimeout(function() {
+				formMessages.style.display = 'none';
+			}, 8000);
 		}
 	});
 	</script>
