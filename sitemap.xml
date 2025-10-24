@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   
-  <!-- Homepage -->
+  <!-- Homepage - Lietuva -->
   <url>
     <loc>https://elektros-sprendimai.lt/</loc>
     <lastmod>2025-10-24</lastmod>
@@ -23,9 +23,19 @@
       <image:title>Išmanios valdymo sistemos Lietuvoje</image:title>
       <image:caption>Shelly ir kitos išmanios elektros valdymo sistemos visoje Lietuvoje</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://elektros-sprendimai.lt/images/signalizacija.png</image:loc>
+      <image:title>Signalizacijos sistemos Lietuvoje</image:title>
+      <image:caption>Signalizacijos ir apsaugos sistemų montavimas visoje Lietuvoje</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://elektros-sprendimai.lt/images/elektros_skydas_big.jpg</image:loc>
+      <image:title>Elektros skydo surinkimas profesionaliai</image:title>
+      <image:caption>Sertifikuoti elektros darbai ir skydų montavimas</image:caption>
+    </image:image>
   </url>
   
-  <!-- Section: Generatorių darbai -->
+  <!-- Section: Generatorių darbai - Lietuva -->
   <url>
     <loc>https://elektros-sprendimai.lt/#generatoriaus_darbai</loc>
     <lastmod>2025-10-24</lastmod>
@@ -33,7 +43,7 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- Section: Mūsų paslaugos -->
+  <!-- Section: Mūsų paslaugos - Lietuva -->
   <url>
     <loc>https://elektros-sprendimai.lt/#musu_paslaugos</loc>
     <lastmod>2025-10-24</lastmod>
@@ -41,7 +51,7 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- Section: Papildomi darbai -->
+  <!-- Section: Papildomi darbai - Lietuva -->
   <url>
     <loc>https://elektros-sprendimai.lt/#elektors_darbai</loc>
     <lastmod>2025-10-24</lastmod>
@@ -49,12 +59,77 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Section: Kontaktai -->
+  <!-- Section: Kontaktai - Lietuva -->
   <url>
     <loc>https://elektros-sprendimai.lt/#three</loc>
     <lastmod>2025-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- Location specific pages - Vilnius -->
+  <url>
+    <loc>https://elektros-sprendimai.lt/?location=vilnius</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://elektros-sprendimai.lt/images/generatorius.jpg</image:loc>
+      <image:title>Generatorių montavimas Vilniuje</image:title>
+      <image:caption>Profesionalus generatorių montavimas ir elektros darbai Vilniuje</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Location specific pages - Kaunas -->
+  <url>
+    <loc>https://elektros-sprendimai.lt/?location=kaunas</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://elektros-sprendimai.lt/images/generatorius.jpg</image:loc>
+      <image:title>Generatorių montavimas Kaune</image:title>
+      <image:caption>Profesionalus generatorių montavimas ir elektros darbai Kaune</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Location specific pages - Klaipėda -->
+  <url>
+    <loc>https://elektros-sprendimai.lt/?location=klaipeda</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://elektros-sprendimai.lt/images/generatorius.jpg</image:loc>
+      <image:title>Generatorių montavimas Klaipėdoje</image:title>
+      <image:caption>Profesionalus generatorių montavimas ir elektros darbai Klaipėdoje</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Location specific pages - Šiauliai -->
+  <url>
+    <loc>https://elektros-sprendimai.lt/?location=siauliai</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://elektros-sprendimai.lt/images/generatorius.jpg</image:loc>
+      <image:title>Generatorių montavimas Šiauliuose</image:title>
+      <image:caption>Profesionalus generatorių montavimas ir elektros darbai Šiauliuose</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Location specific pages - Panevėžys -->
+  <url>
+    <loc>https://elektros-sprendimai.lt/?location=panevezys</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://elektros-sprendimai.lt/images/generatorius.jpg</image:loc>
+      <image:title>Generatorių montavimas Panevėžyje</image:title>
+      <image:caption>Profesionalus generatorių montavimas ir elektros darbai Panevėžyje</image:caption>
+    </image:image>
   </url>
 
 </urlset>
