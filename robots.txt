@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.generatoriai.lt/sitemap.xml
+Sitemap: https://www.tavogeneratorius.lt/sitemap.xml
