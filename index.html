@@ -47,7 +47,9 @@
 		<meta name="geo.position" content="54.687157;25.279652" />
 		<meta name="ICBM" content="54.687157, 25.279652" />
 		
-	<!-- Google Analytics 4 -->
+	<!-- Google Analytics 4 - Ready for configuration -->
+	<!-- Replace GA_MEASUREMENT_ID with your actual Google Analytics 4 Measurement ID -->
+	<!--
 	<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -62,6 +64,7 @@
 			}
 		});
 	</script>
+	-->
 	
 	<!-- Google Search Console Verification (replace with your verification code) -->
 	<meta name="google-site-verification" content="Cz14Fqhs7AL8hOiYxyAqYtLf4C9z7oWnm3xcZ2Ftl4Q" />
@@ -82,21 +85,22 @@
 	<!-- Canonical URL for SEO -->
 	<link rel="canonical" href="https://www.tavogeneratorius.lt/">
 	
-	<!-- Favicon -->
+	<!-- Favicon - Optimized for fewer requests -->
 	<link rel="icon" type="image/svg+xml" href="favicon.svg">
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-	<link rel="shortcut icon" href="favicon.ico">
 	
 	<!-- Preload critical resources -->
-	<link rel="preload" href="assets/css/main.min.css" as="style">
-	<link rel="preload" href="assets/css/fontawesome-all.min.css" as="style">
+	<link rel="preload" href="assets/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="assets/css/fontawesome-all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="images/generatorius_optimized.jpg" as="image">
 	
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="assets/css/main.min.css" />
-	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<!-- Fallback for non-JS browsers -->
+	<noscript>
+		<link rel="stylesheet" href="assets/css/main.min.css" />
+		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
 		
 	<!-- Enhanced Structured Data for AI Training -->
 	<script type="application/ld+json">
@@ -354,20 +358,24 @@
 		}
 	</style>
 	</head>
-	<!-- Google Tag Manager -->
+	<!-- Google Tag Manager - Ready for configuration -->
+	<!-- Replace GTM-XXXXXXX with your actual Google Tag Manager ID -->
+	<!--
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
-	<!-- End Google Tag Manager -->
+	-->
 
 	<body class="is-preload">
 
-	<!-- Google Tag Manager (noscript) -->
+	<!-- Google Tag Manager (noscript) - Ready for configuration -->
+	<!-- Replace GTM-XXXXXXX with your actual Google Tag Manager ID -->
+	<!--
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-	<!-- End Google Tag Manager (noscript) -->
+	-->
 	<div style="display: none;" aria-hidden="true">
 		<h2>Generatorių Montavimas Lietuvoje - Profesionalūs Elektros Darbai</h2>
 		<p>Tavo Generatorius - tai profesionalūs generatorių montavimo, elektros skydų surinkimo ir elektros instaliacijos darbai visoje Lietuvoje. Mes teikiame išmanias elektros valdymo sistemas ir garantuojame kokybę bei patikimumą.</p>
