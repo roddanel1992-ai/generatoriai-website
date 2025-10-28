@@ -407,6 +407,18 @@
 			transition: all 0.3s ease;
 			-webkit-tap-highlight-color: transparent;
 			touch-action: manipulation;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			cursor: pointer;
+			min-height: 44px;
+			min-width: 44px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 		
 		.mobile-contact-bar a:hover {
@@ -491,11 +503,11 @@
 
 	<!-- Mobile Contact Bar -->
 		<div class="mobile-contact-bar">
-			<a href="tel:+37060794868" aria-label="Skambinti telefonu">
+			<a href="tel:+37060794868" aria-label="Skambinti telefonu" id="phone-link">
 				<i class="fas fa-phone"></i>
 				+370 607 94868
 			</a>
-			<a href="mailto:tavogeneratorius@gmail.com?subject=Generatorių%20paslaugos&body=Sveiki,%20domina%20generatorių%20montavimo%20paslaugos." aria-label="Siųsti el. laišką" onclick="if(!navigator.userAgent.match(/iPhone|iPad|iPod/)){return true;}else{window.open('mailto:tavogeneratorius@gmail.com?subject=Generatorių%20paslaugos&body=Sveiki,%20domina%20generatorių%20montavimo%20paslaugos.','_blank');return false;}">
+			<a href="mailto:tavogeneratorius@gmail.com?subject=Generatorių%20paslaugos&body=Sveiki,%20domina%20generatorių%20montavimo%20paslaugos." aria-label="Siųsti el. laišką" id="email-link">
 				<i class="fas fa-envelope"></i>
 				El. paštas
 			</a>
@@ -821,6 +833,37 @@
 	<script src="assets/js/util.min.js" defer></script>
 	<script src="assets/js/main.min.js" defer></script>
 	
+	<!-- iPhone Touch Handling Script -->
+	<script>
+	// iPhone touch handling for mobile contact bar
+	document.addEventListener('DOMContentLoaded', function() {
+		var phoneLink = document.getElementById('phone-link');
+		var emailLink = document.getElementById('email-link');
+		
+		// Check if device is iPhone/iPad
+		var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+		
+		if (isIOS) {
+			// Phone link handling
+			if (phoneLink) {
+				phoneLink.addEventListener('touchstart', function(e) {
+					e.preventDefault();
+					window.location.href = 'tel:+37060794868';
+				}, { passive: false });
+			}
+			
+			// Email link handling
+			if (emailLink) {
+				emailLink.addEventListener('touchstart', function(e) {
+					e.preventDefault();
+					var emailUrl = 'mailto:tavogeneratorius@gmail.com?subject=Generatorių%20paslaugos&body=Sveiki,%20domina%20generatorių%20montavimo%20paslaugos.';
+					window.location.href = emailUrl;
+				}, { passive: false });
+			}
+		}
+	});
+	</script>
+
 	<!-- Form Validation and Submission Script -->
 	<script>
 	(function() {
