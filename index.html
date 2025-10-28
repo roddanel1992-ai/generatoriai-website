@@ -911,11 +911,7 @@
 			
 			// Handle form submission
 			contactForm.onsubmit = function(e) {
-				// Let form submit naturally to FormSubmit
-				// This works better with Debian server
-				console.log('Form submitting to FormSubmit...');
-				
-				console.log('Form submission intercepted');
+				console.log('Form validation starting...');
 				
 				// Get form values
 				var name = document.getElementById('name').value.trim();
@@ -975,98 +971,22 @@
 				return false;
 			}
 			
-			// All validation passed - show loading
-			var submitBtn = contactForm.querySelector('button[type="submit"]');
-			var originalBtnText = 'Siųsti žinutę';
-				
-				if (submitBtn) {
-					submitBtn.disabled = true;
-					submitBtn.textContent = 'Siunčiama...';
-				}
-				
-			showMessage('⏳ Siunčiama žinutė...', 'success');
-			
-			// Prepare form data
-			var formData = new FormData(contactForm);
-			
-			// Debug: Log form data
+			// All validation passed - let form submit naturally to FormSubmit.co
+			// This works more reliably on Debian/nginx servers
+			console.log('✅ All validation passed. Submitting form to FormSubmit.co...');
 			console.log('Form action:', contactForm.action);
-			console.log('Form data entries:');
-			for (var pair of formData.entries()) {
-				console.log(pair[0] + ': ' + pair[1]);
+			
+			// Show loading message
+			var submitBtn = contactForm.querySelector('button[type="submit"]');
+			if (submitBtn) {
+				submitBtn.disabled = true;
+				submitBtn.textContent = 'Siunčiama...';
 			}
-				
-				// Submit via AJAX
-				fetch(contactForm.action, {
-					method: 'POST',
-					body: formData,
-					headers: {
-						'Accept': 'application/json'
-					}
-				})
-				.then(function(response) {
-					console.log('Response status:', response.status);
-					console.log('Response headers:', response.headers);
-					console.log('Response URL:', response.url);
-					
-					if (!response.ok) {
-						throw new Error('Network response was not ok: ' + response.status);
-					}
-					
-					// Check if response is JSON or HTML
-					var contentType = response.headers.get('content-type');
-					console.log('Content-Type:', contentType);
-					
-					if (contentType && contentType.includes('application/json')) {
-						return response.json().then(function(data) {
-							return { data: data, status: response.status };
-						});
-					} else {
-						// If it's HTML, treat as success (FormSubmit redirect page)
-						return { data: { success: true, message: 'Success' }, status: response.status };
-					}
-				})
-				.then(function(result) {
-					console.log('FormSubmit response:', result.data);
-					console.log('Response status:', result.status);
-					
-					// Check for success in various formats
-					if (result.data.success === 'true' || result.data.success === true || result.data.message === 'Success' || 
-						(result.status >= 200 && result.status < 300)) {
-						console.log('✅ Form submitted successfully! Showing success message...');
-						showMessage('✅ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
-						contactForm.reset();
-						// Reset form load time for next submission
-						formLoadTime = new Date().getTime();
-					} else {
-						console.log('❌ Form submission failed:', result.data);
-						showMessage('❌ Klaida: ' + (result.data.message || 'Nepavyko išsiųsti žinutės. Prašome susisiekti telefonu +370 607 94868'), 'error');
-					}
-				})
-			.catch(function(error) {
-				console.error('Form submission error:', error);
-				console.log('Trying fallback method...');
-				
-				// Fallback: Try traditional form submission
-				try {
-					// Temporarily change form action to direct submission
-					var originalAction = contactForm.action;
-					contactForm.action = 'https://formsubmit.co/tavogeneratorius@gmail.com';
-					contactForm.submit();
-					showMessage('✅ Ačiū! Jūsų žinutė išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
-				} catch (fallbackError) {
-					console.error('Fallback submission failed:', fallbackError);
-					showMessage('❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868 arba tavogeneratorius@gmail.com', 'error');
-				}
-			})
-			.finally(function() {
-				if (submitBtn) {
-					submitBtn.disabled = false;
-					submitBtn.textContent = originalBtnText;
-				}
-			});
-				
-				return false;
+			
+			showMessage('⏳ Siunčiama žinutė... Neuždarykite šio lango.', 'success');
+			
+			// Allow form to submit naturally (better for Debian server)
+			return true;
 			};
 		});
 	})();
