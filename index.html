@@ -726,11 +726,13 @@
 					<!-- Form Messages -->
 					<div id="form-messages" style="display: none; margin-bottom: 2em; padding: 1.5em; border-radius: 0.5em; font-weight: 600;"></div>
 					
-					<form id="contactForm" action="https://formsubmit.co/ajax/tavogeneratorius@gmail.com" method="POST" name="contact" aria-label="Susisiekimo forma">
+					<form id="contactForm" action="https://formsubmit.co/tavogeneratorius@gmail.com" method="POST" name="contact" aria-label="Susisiekimo forma">
 						<!-- FormSubmit Configuration -->
-						<input type="hidden" name="_subject" value="Nauja žinutė iš elektros-sprendimai.lt">
+						<input type="hidden" name="_subject" value="Nauja žinutė iš tavogeneratorius.lt">
 						<input type="hidden" name="_captcha" value="false">
 						<input type="hidden" name="_template" value="table">
+						<input type="hidden" name="_next" value="https://www.tavogeneratorius.lt/">
+						<input type="hidden" name="_autoresponse" value="Ačiū už jūsų žinutę! Susisieksime su jumis artimiausiu metu.">
 						
 						<!-- Honeypot for bot protection (hidden field) -->
 						<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
@@ -976,6 +978,13 @@
 			
 			// Prepare form data
 			var formData = new FormData(contactForm);
+			
+			// Debug: Log form data
+			console.log('Form action:', contactForm.action);
+			console.log('Form data entries:');
+			for (var pair of formData.entries()) {
+				console.log(pair[0] + ': ' + pair[1]);
+			}
 				
 				// Submit via AJAX
 				fetch(contactForm.action, {
