@@ -881,6 +881,9 @@
 			document.getElementById('form_time').value = formLoadTime;
 			
 			function showMessage(message, type) {
+				console.log('showMessage called:', message, type);
+				console.log('formMessages element:', formMessages);
+				
 				formMessages.textContent = message;
 				formMessages.style.display = 'block';
 				
@@ -892,11 +895,13 @@
 					formMessages.style.color = '#ffffff';
 				}
 				
+				console.log('Message displayed, scrolling into view...');
 				// Scroll to message
 				formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 				
 				// Auto-hide after 10 seconds
 				setTimeout(function() {
+					console.log('Hiding message after 10 seconds...');
 					formMessages.style.display = 'none';
 				}, 10000);
 			}
@@ -1024,11 +1029,13 @@
 					// Check for success in various formats
 					if (result.data.success === 'true' || result.data.success === true || result.data.message === 'Success' || 
 						(result.status >= 200 && result.status < 300)) {
+						console.log('✅ Form submitted successfully! Showing success message...');
 						showMessage('✅ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
 						contactForm.reset();
 						// Reset form load time for next submission
 						formLoadTime = new Date().getTime();
 					} else {
+						console.log('❌ Form submission failed:', result.data);
 						showMessage('❌ Klaida: ' + (result.data.message || 'Nepavyko išsiųsti žinutės. Prašome susisiekti telefonu +370 607 94868'), 'error');
 					}
 				})
