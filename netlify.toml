@@ -1,5 +1,24 @@
 [build]
   publish = "."
+
+# Redirects - Force www version for SEO consistency
+[[redirects]]
+  from = "https://tavogeneratorius.lt/*"
+  to = "https://www.tavogeneratorius.lt/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://tavogeneratorius.lt/*"
+  to = "https://www.tavogeneratorius.lt/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.tavogeneratorius.lt/*"
+  to = "https://www.tavogeneratorius.lt/:splat"
+  status = 301
+  force = true
   
 [[headers]]
   for = "/*"
