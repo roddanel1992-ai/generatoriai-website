@@ -995,23 +995,39 @@
 					}
 				})
 				.then(function(response) {
-					if (!response.ok) {
-						throw new Error('Network response was not ok');
-					}
-					return response.json();
-				})
-				.then(function(data) {
-					console.log('FormSubmit response:', data);
+					console.log('Response status:', response.status);
+					console.log('Response headers:', response.headers);
 					
-				if (data.success === 'true' || data.success === true || data.message === 'Success') {
-					showMessage('✅ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
-					contactForm.reset();
-					// Reset form load time for next submission
-					formLoadTime = new Date().getTime();
-				} else {
-					showMessage('❌ Klaida: ' + (data.message || 'Nepavyko išsiųsti žinutės. Prašome susisiekti telefonu +370 607 94868'), 'error');
-				}
-			})
+					if (!response.ok) {
+						throw new Error('Network response was not ok: ' + response.status);
+					}
+					
+					// Check if response is JSON or HTML
+					var contentType = response.headers.get('content-type');
+					if (contentType && contentType.includes('application/json')) {
+						return response.json().then(function(data) {
+							return { data: data, status: response.status };
+						});
+					} else {
+						// If it's HTML, treat as success (FormSubmit redirect page)
+						return { data: { success: true, message: 'Success' }, status: response.status };
+					}
+				})
+				.then(function(result) {
+					console.log('FormSubmit response:', result.data);
+					console.log('Response status:', result.status);
+					
+					// Check for success in various formats
+					if (result.data.success === 'true' || result.data.success === true || result.data.message === 'Success' || 
+						(result.status >= 200 && result.status < 300)) {
+						showMessage('✅ Ačiū! Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis artimiausiu metu.', 'success');
+						contactForm.reset();
+						// Reset form load time for next submission
+						formLoadTime = new Date().getTime();
+					} else {
+						showMessage('❌ Klaida: ' + (result.data.message || 'Nepavyko išsiųsti žinutės. Prašome susisiekti telefonu +370 607 94868'), 'error');
+					}
+				})
 			.catch(function(error) {
 				console.error('Form submission error:', error);
 				showMessage('❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868 arba tavogeneratorius@gmail.com', 'error');
