@@ -911,8 +911,9 @@
 			
 			// Handle form submission
 			contactForm.onsubmit = function(e) {
-				e.preventDefault();
-				e.stopPropagation();
+				// Let form submit naturally to FormSubmit
+				// This works better with Debian server
+				console.log('Form submitting to FormSubmit...');
 				
 				console.log('Form submission intercepted');
 				
