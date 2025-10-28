@@ -88,7 +88,96 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 	
-	<!-- Preload critical resources -->
+	<!-- Critical CSS - Inlined for faster rendering -->
+	<style>
+		/* Critical above-the-fold styles */
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		html { font-size: 16px; }
+		body { 
+			background: #312450; 
+			font-family: "Source Sans Pro", Helvetica, sans-serif; 
+			font-weight: 400; 
+			line-height: 1.75; 
+			color: #ffffff; 
+		}
+		@font-face {
+			font-family: "Source Sans Pro";
+			font-display: swap;
+		}
+		#wrapper { 
+			background: #312450; 
+			position: relative; 
+			z-index: 1; 
+			min-height: 100vh; 
+		}
+		#main { 
+			background: #312450; 
+			position: relative; 
+			z-index: 1; 
+			min-height: 100vh; 
+		}
+		#intro { 
+			background-attachment: fixed; 
+			background-image: url("images/intro.svg"); 
+			background-position: top right; 
+			background-repeat: no-repeat; 
+			background-size: 100% 100%; 
+			padding: 0; 
+			position: relative; 
+			text-align: center; 
+		}
+		#intro h1 { 
+			color: #ffffff; 
+			font-weight: bold; 
+			line-height: 1.5; 
+			margin: 0 0 0.5em 0; 
+			font-size: 2.75em; 
+		}
+		#intro p { 
+			font-size: 1.25em; 
+			color: rgba(255, 255, 255, 0.55); 
+		}
+		.button { 
+			background: linear-gradient(to right, #5e42a6, #b74e91); 
+			border: 0; 
+			border-radius: 0.375em; 
+			color: #ffffff; 
+			cursor: pointer; 
+			display: inline-block; 
+			font-weight: 600; 
+			height: 3em; 
+			line-height: 3em; 
+			padding: 0 2em; 
+			text-align: center; 
+			text-decoration: none; 
+			white-space: nowrap; 
+		}
+		#header { 
+			background: #312450; 
+			box-shadow: 0 0 0.5em 0 rgba(0, 0, 0, 0.25); 
+			cursor: default; 
+			height: 3.5em; 
+			left: 0; 
+			line-height: 3.5em; 
+			position: fixed; 
+			top: 0; 
+			width: 100%; 
+			z-index: 10000; 
+		}
+		@media screen and (max-width: 1280px) {
+			#sidebar { display: none; }
+			#wrapper { margin-left: 0; padding-top: 4em; }
+		}
+		@media screen and (max-width: 736px) {
+			#intro h1 { font-size: 2em; }
+			#intro p { font-size: 1em; }
+		}
+	</style>
+	
+	<!-- Preload critical fonts -->
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	
+	<!-- Preload non-critical resources -->
 	<link rel="preload" href="assets/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="assets/css/fontawesome-all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="images/generatorius_optimized.jpg" as="image">
