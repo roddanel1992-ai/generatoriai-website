@@ -7,33 +7,85 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Cache-Control = "public, max-age=31536000"
+    Vary = "Accept-Encoding"
 
 [[headers]]
   for = "*.css"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=31536000, immutable"
     Content-Type = "text/css"
+    Vary = "Accept-Encoding"
 
 [[headers]]
   for = "*.js"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=31536000, immutable"
     Content-Type = "application/javascript"
+    Vary = "Accept-Encoding"
 
 [[headers]]
   for = "*.jpg"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
     Content-Type = "image/jpeg"
+    Vary = "Accept-Encoding"
 
 [[headers]]
   for = "*.png"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
     Content-Type = "image/png"
+    Vary = "Accept-Encoding"
 
 [[headers]]
   for = "*.webp"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
     Content-Type = "image/webp"
+    Vary = "Accept-Encoding"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+    Content-Type = "image/svg+xml"
+    Vary = "Accept-Encoding"
+
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "font/woff2"
+    Vary = "Accept-Encoding"
+
+[[headers]]
+  for = "*.woff"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "font/woff"
+    Vary = "Accept-Encoding"
+
+[[headers]]
+  for = "*.ttf"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "font/ttf"
+    Vary = "Accept-Encoding"
+
+[[headers]]
+  for = "*.eot"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "application/vnd.ms-fontobject"
+    Vary = "Accept-Encoding"
+
+# Mobile Performance Optimizations
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "text/html; charset=utf-8"
+    Vary = "Accept-Encoding"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
