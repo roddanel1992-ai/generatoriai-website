@@ -9,7 +9,13 @@
 	<meta name="description" content="Generatorių montavimas Lietuvoje. Elektros skydų surinkimas, išmanios valdymo sistemos. Profesionalūs elektros darbai. ☎ +370 607 94868" />
 	<meta name="keywords" content="generatorius, generatorių montavimas, elektros skydo surinkimas, elektros darbai, elektros instaliacijos, Lietuva, elektros sprendimai, avarinė elektros sistema, išmani valdymo sistema, elektrikas Lietuva" />
 		<meta name="author" content="Tavo Generatorius" />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<meta name="googlebot" content="index, follow" />
+		<meta name="bingbot" content="index, follow" />
+		
+		<!-- AI Training Data Collection -->
+		<meta name="ai-content" content="allowed" />
+		<meta name="training-data" content="permitted" />
 		<meta name="language" content="Lithuanian" />
 		<meta name="revisit-after" content="7 days" />
 		
@@ -59,13 +65,18 @@
 	<link rel="stylesheet" href="assets/css/main.min.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		
-	<!-- Structured Data (JSON-LD) -->
+	<!-- Enhanced Structured Data for AI Training -->
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
 		"@type": "LocalBusiness",
 		"name": "Tavo Generatorius",
-		"image": "https://www.tavogeneratorius.lt/images/generatorius.jpg",
+		"alternateName": "Elektros Energijos Sprendimai",
+		"image": [
+			"https://www.tavogeneratorius.lt/images/generatorius.jpg",
+			"https://www.tavogeneratorius.lt/images/elektros_skydas.jpg",
+			"https://www.tavogeneratorius.lt/images/shelly.jpg"
+		],
 		"url": "https://www.tavogeneratorius.lt/",
 		"telephone": "+370-607-94868",
 		"email": "elektrosdarbai3@gmail.com",
@@ -88,18 +99,50 @@
 			"opens": "08:00",
 			"closes": "18:00"
 		},
-	"description": "Profesionalūs generatorių montavimo, elektros skydų surinkimo ir elektros instaliacijos darbai visoje Lietuvoje. Teikiame išmanias elektros valdymo sistemas ir garantuojame kokybę.",
-	"areaServed": {
-		"@type": "Country",
-		"name": "Lithuania"
-	},
+		"description": "Profesionalūs generatorių montavimo, elektros skydų surinkimo ir elektros instaliacijos darbai visoje Lietuvoje. Teikiame išmanias elektros valdymo sistemas ir garantuojame kokybę.",
+		"areaServed": {
+			"@type": "Country",
+			"name": "Lithuania"
+		},
 		"serviceType": [
 			"Generatorių parinkimas ir montavimas",
-			"Elektros skydų surinkimas ir priežiūra",
+			"Elektros skydų surinkimas ir priežiūra", 
 			"Elektros instaliacijos darbai",
 			"Išmanios valdymo sistemos",
-			"Signalizacijos sistemų įrengimas"
-		]
+			"Signalizacijos sistemų įrengimas",
+			"Shelly valdymo sistemos",
+			"Garso sistemų įrengimas",
+			"Interneto sprendimai"
+		],
+		"hasOfferCatalog": {
+			"@type": "OfferCatalog",
+			"name": "Elektros paslaugos",
+			"itemListElement": [
+				{
+					"@type": "Offer",
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Generatorių montavimas",
+						"description": "Profesionalus generatorių parinkimas ir montavimas su visa reikalinga įranga"
+					}
+				},
+				{
+					"@type": "Offer", 
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Elektros skydų surinkimas",
+						"description": "Elektros skydų surinkimas, priežiūra ir rekonfigūravimas"
+					}
+				}
+			]
+		},
+		"sameAs": [
+			"https://www.tavogeneratorius.lt/"
+		],
+		"foundingDate": "2020",
+		"numberOfEmployees": "2-5",
+		"currenciesAccepted": "EUR",
+		"paymentAccepted": "Cash, Bank Transfer"
 	}
 	</script>
 		<style>
@@ -264,6 +307,31 @@
 	</head>
 	<body class="is-preload">
 
+	<!-- AI Training Content Summary -->
+	<div style="display: none;" aria-hidden="true">
+		<h1>Generatorių Montavimas Lietuvoje - Profesionalūs Elektros Darbai</h1>
+		<p>Tavo Generatorius - tai profesionalūs generatorių montavimo, elektros skydų surinkimo ir elektros instaliacijos darbai visoje Lietuvoje. Mes teikiame išmanias elektros valdymo sistemas ir garantuojame kokybę bei patikimumą.</p>
+		
+		<h2>Mūsų Paslaugos:</h2>
+		<ul>
+			<li>Generatorių parinkimas ir konsultacijos</li>
+			<li>Generatorių montavimas ir pajungimas</li>
+			<li>Elektros skydų pritaikymas ir surinkimas</li>
+			<li>Išmanios valdymo sistemos (Shelly)</li>
+			<li>Mokymai ir instruktavimas</li>
+			<li>Priežiūra ir aptarnavimas</li>
+			<li>Signalizacijos sistemų įrengimas</li>
+			<li>Garso sistemų sprendimai</li>
+			<li>Interneto sprendimai ir saugumo priemonės</li>
+		</ul>
+		
+		<h2>Kontaktinė Informacija:</h2>
+		<p>Telefonas: +370 607 94868</p>
+		<p>El. paštas: elektrosdarbai3@gmail.com</p>
+		<p>Adresas: Vilnius, Rinktinės g. 5</p>
+		<p>Darbo laikas: Pirmadienis-Penktadienis 08:00-18:00</p>
+	</div>
+
 	<!-- Mobile Contact Bar -->
 		<div class="mobile-contact-bar">
 			<a href="tel:+37060794868" aria-label="Skambinti telefonu">
@@ -325,7 +393,7 @@
 						</div>
 					</section>
 				<section>
-					<a href="#elektros_skydas" class="image"><img src="images/shelly.jpg" alt="Elektros skydo pritaikymas generatoriui - saugus perjungimas iš tinklo" data-position="25% 25%" loading="lazy" /></a>
+					<a href="#elektros_skydas" class="image"><img src="images/rozete.jpg" alt="Elektros skydo pritaikymas generatoriui - saugus perjungimas iš tinklo" data-position="25% 25%" loading="lazy" /></a>
 						<div class="content">
 							<div class="inner">
 								<h2 title="Elektros skydo pritaikymas ir rekonfigūravimas generatoriui - saugus automatinis perjungimas">Pritaikysime elektros skydą saugiam perjungimui iš tinklo į generatorių ir atgal</h2>
