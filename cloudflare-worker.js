@@ -162,13 +162,16 @@ async function handleRequest(request) {
       body: JSON.stringify({
         personalizations: [
           {
-            to: [{ email: 'tavogeneratorius@gmail.com', name: 'Tavo Generatorius' }],
-            reply_to: { email: email, name: name }
+            to: [{ email: 'tavogeneratorius@gmail.com', name: 'Tavo Generatorius' }]
           },
         ],
         from: {
           email: 'noreply@tavogeneratorius.lt',
           name: 'Tavo Generatorius Kontaktai',
+        },
+        reply_to: {
+          email: email,
+          name: name
         },
         subject: `🔔 Nauja žinutė iš ${name}`,
         content: [
