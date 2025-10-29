@@ -730,15 +730,7 @@
 					<!-- Form Messages -->
 					<div id="form-messages" style="display: none; margin-bottom: 2em; padding: 1.5em; border-radius: 0.5em; font-weight: 600;"></div>
 					
-					<form id="contactForm" action="https://formsubmit.co/tavogeneratorius@gmail.com" method="POST" name="contact" aria-label="Susisiekimo forma">
-						<!-- FormSubmit Configuration -->
-						<input type="hidden" name="_subject" value="Nauja žinutė iš tavogeneratorius.lt">
-						<input type="hidden" name="_captcha" value="false">
-						<input type="hidden" name="_template" value="table">
-						<input type="hidden" name="_next" value="https://www.tavogeneratorius.lt/?success=true">
-						<input type="hidden" name="_autoresponse" value="Ačiū už jūsų žinutę! Susisieksime su jumis artimiausiu metu.">
-						<input type="hidden" name="_url" value="https://www.tavogeneratorius.lt/">
-						
+					<form id="contactForm" action="send-email.php" method="POST" name="contact" aria-label="Susisiekimo forma">
 						<!-- Honeypot for bot protection (hidden field) -->
 						<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 						<input type="hidden" name="_form_time" id="form_time" value="">
@@ -972,22 +964,54 @@
 				return false;
 			}
 			
-			// All validation passed - let form submit naturally to FormSubmit.co
-			// This works more reliably on Debian/nginx servers
-			console.log('✅ All validation passed. Submitting form to FormSubmit.co...');
-			console.log('Form action:', contactForm.action);
+			// All validation passed - submit via AJAX to PHP
+			console.log('✅ All validation passed. Submitting to PHP handler...');
 			
 			// Show loading message
 			var submitBtn = contactForm.querySelector('button[type="submit"]');
+			var originalBtnText = submitBtn ? submitBtn.textContent : 'Siųsti žinutę';
+			
 			if (submitBtn) {
 				submitBtn.disabled = true;
 				submitBtn.textContent = 'Siunčiama...';
 			}
 			
-			showMessage('⏳ Siunčiama žinutė... Neuždarykite šio lango.', 'success');
+			showMessage('⏳ Siunčiama žinutė...', 'success');
 			
-			// Allow form to submit naturally (better for Debian server)
-			return true;
+			// Prepare form data
+			var formData = new FormData(contactForm);
+			
+			// Submit via AJAX
+			fetch(contactForm.action, {
+				method: 'POST',
+				body: formData
+			})
+			.then(function(response) {
+				return response.json();
+			})
+			.then(function(data) {
+				console.log('Server response:', data);
+				
+				if (data.success) {
+					showMessage(data.message, 'success');
+					contactForm.reset();
+					formLoadTime = new Date().getTime();
+				} else {
+					showMessage(data.message || '❌ Klaida siunčiant žinutę', 'error');
+				}
+			})
+			.catch(function(error) {
+				console.error('Error:', error);
+				showMessage('❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868', 'error');
+			})
+			.finally(function() {
+				if (submitBtn) {
+					submitBtn.disabled = false;
+					submitBtn.textContent = originalBtnText;
+				}
+			});
+			
+			return false;
 			};
 		});
 	})();
