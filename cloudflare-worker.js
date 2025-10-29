@@ -157,6 +157,7 @@ async function handleRequest(request) {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
+        'X-API-Key': 'cloudflare-worker', // Optional for Workers
       },
       body: JSON.stringify({
         personalizations: [
@@ -191,11 +192,16 @@ async function handleRequest(request) {
       })
     } else {
       const errorText = await sendResponse.text()
-      console.error('MailChannels error:', errorText)
+      console.error('MailChannels error:', sendResponse.status, errorText)
       
+      // Return more detailed error for debugging
       return new Response(JSON.stringify({ 
         success: false, 
-        message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868' 
+        message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868',
+        debug: {
+          status: sendResponse.status,
+          error: errorText
+        }
       }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
