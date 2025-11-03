@@ -5,7 +5,7 @@
   <!-- Homepage - Lietuva -->
   <url>
     <loc>https://www.tavogeneratorius.lt/</loc>
-    <lastmod>2025-10-30</lastmod>
+    <lastmod>2025-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -13,59 +13,85 @@
       <image:title>Generatorių montavimas Lietuvoje</image:title>
       <image:caption>Profesionalus generatorių montavimas ir elektros darbai visoje Lietuvoje</image:caption>
     </image:image>
-    <image:image>
-      <image:loc>https://www.tavogeneratorius.lt/images/elektros_skydas.jpg</image:loc>
-      <image:title>Elektros skydo montavimas Lietuvoje</image:title>
-      <image:caption>Elektros skydų surinkimas, priežiūra ir rekonfigūravimas visoje Lietuvoje</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.tavogeneratorius.lt/images/shelly.jpg</image:loc>
-      <image:title>Išmanios valdymo sistemos Lietuvoje</image:title>
-      <image:caption>Shelly ir kitos išmanios elektros valdymo sistemos visoje Lietuvoje</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.tavogeneratorius.lt/images/signalizacija.png</image:loc>
-      <image:title>Signalizacijos sistemos Lietuvoje</image:title>
-      <image:caption>Signalizacijos ir apsaugos sistemų montavimas visoje Lietuvoje</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.tavogeneratorius.lt/images/elektros_skydas_big.jpg</image:loc>
-      <image:title>Elektros skydo surinkimas profesionaliai</image:title>
-      <image:caption>Sertifikuoti elektros darbai ir skydų montavimas</image:caption>
-    </image:image>
   </url>
   
-  <!-- Section: Generatorių darbai - Lietuva -->
+  <!-- Main Services Pages -->
   <url>
-    <loc>https://www.tavogeneratorius.lt/#generatoriaus_darbai</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/generatoriu-parinkimas.html</loc>
+    <lastmod>2025-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
-  <!-- Section: Mūsų paslaugos - Lietuva -->
   <url>
-    <loc>https://www.tavogeneratorius.lt/#musu_paslaugos</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/generatoriu-montavimas.html</loc>
+    <lastmod>2025-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
-  <!-- Section: Papildomi darbai - Lietuva -->
   <url>
-    <loc>https://www.tavogeneratorius.lt/#elektors_darbai</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/elektros-skydu-pritaikymas.html</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/ismanios-valdymo-sistemos-generatoriams.html</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/mokymai-ir-instruktavimas.html</loc>
+    <lastmod>2025-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Section: Kontaktai - Lietuva -->
   <url>
-    <loc>https://www.tavogeneratorius.lt/#three</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/prieziura-ir-aptarnavimas.html</loc>
+    <lastmod>2025-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
+  
+  <!-- Additional Services Pages -->
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/elektros-skydo-surinkimas.html</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/interneto-sprendimai.html</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/signalizacija.html</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/ismanios-kontroles.html</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/garso-sistemos.html</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
 </urlset>
