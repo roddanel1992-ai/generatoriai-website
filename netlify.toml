@@ -19,6 +19,12 @@
   to = "https://www.tavogeneratorius.lt/:splat"
   status = 301
   force = true
+
+# Custom 404 error page
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
   
 [[headers]]
   for = "/*"
