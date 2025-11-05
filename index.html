@@ -390,6 +390,15 @@
 			flex: 0 0 100%;
 		}
 	}
+	
+	/* Mobile: Swap order - Text first, Image second */
+	@media screen and (max-width: 980px) {
+		#generatoriaus_darbai > section {
+			display: flex;
+			flex-direction: column-reverse;
+		}
+	}
+	
 		/* Change musu_paslaugos section background to match sidebar */
 		#musu_paslaugos {
 			background: #312450;
