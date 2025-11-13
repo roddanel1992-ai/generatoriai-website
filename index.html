@@ -84,6 +84,11 @@
 	<!-- Canonical URL for SEO -->
 	<link rel="canonical" href="https://www.tavogeneratorius.lt/">
 	
+	<!-- hreflang for multilingual SEO -->
+	<link rel="alternate" hreflang="lt" href="https://www.tavogeneratorius.lt/" />
+	<link rel="alternate" hreflang="en" href="https://www.tavogeneratorius.lt/en/" />
+	<link rel="alternate" hreflang="x-default" href="https://www.tavogeneratorius.lt/" />
+	
 	<!-- Favicon - Optimized for Google Search & All Browsers -->
 	<!-- Cache-busting version parameter to force Google to fetch new favicon -->
 	<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
@@ -185,6 +190,34 @@
 			#intro { padding-top: 2em; }
 			#intro h1 { font-size: 2em; margin-top: 1em; }
 			#intro p { font-size: 1em; }
+		}
+		.language-switcher { 
+			text-align: left;
+			padding: 1.5em 0 0 0;
+			margin-top: 1.5em;
+			border-top: 1px solid rgba(255, 255, 255, 0.15);
+		}
+		.language-switcher a { 
+			display: inline-block; 
+			margin-right: 0.6em; 
+			padding: 0.3em 0.7em; 
+			background: transparent;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			border-radius: 0.2em; 
+			color: rgba(255, 255, 255, 0.6); 
+			text-decoration: none; 
+			font-weight: 500; 
+			font-size: 0.8em;
+			transition: all 0.3s ease; 
+		}
+		.language-switcher a:hover { 
+			background: rgba(255, 255, 255, 0.1); 
+			color: #ffffff;
+		}
+		.language-switcher a.active { 
+			background: rgba(255, 255, 255, 0.15);
+			color: #ffffff;
+			border-color: rgba(255, 255, 255, 0.3);
 		}
 	</style>
 	
@@ -600,6 +633,11 @@
 					<li><a href="#three" aria-label="Susisiekti su mumis">Kontaktai</a></li>
 				</ul>
 			</nav>
+											<!-- Language Switcher -->
+											<div class="language-switcher">
+												<a href="/" class="active" title="Lietuvių">LT</a>
+												<a href="/en/" title="English">EN</a>
+											</div>
 			</div>
 		</section>
 
@@ -915,14 +953,14 @@
 
 			</div>
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Elektros Energijos Sprendimai. Visos teisės saugomos.</li>
-					</ul>
-				</div>
-			</footer>
+	<!-- Footer -->
+		<footer id="footer" class="wrapper style1-alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; Elektros Energijos Sprendimai. Visos teisės saugomos.</li>
+				</ul>
+			</div>
+		</footer>
 
 	<!-- Scripts -->
 	<script src="assets/js/jquery.min.js" defer></script>
