@@ -275,4 +275,26 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Vilnius Pages -->
+  <url>
+    <loc>https://www.tavogeneratorius.lt/vilnius/</loc>
+    <lastmod>2025-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/en/vilnius/</loc>
+    <lastmod>2025-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/ru/vilnius/</loc>
+    <lastmod>2025-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
