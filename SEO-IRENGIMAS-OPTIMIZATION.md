@@ -300,7 +300,7 @@ Patikrinau TOP 5 konkurentus Google paieškoje "generatorių įrengimas":
    ✅ Automatiniai perjungikliai
    ✅ Valdymo sistemos
    ✅ Elektros skydai
-   ☎ +370 607 94868
+   ☎ +370 694 01517
    ```
 
 ### **C. Backlinks:**
@@ -365,5 +365,5 @@ Rašykite blog straipsnius:
 
 ---
 
-**Klausimų ar reikia pagalbos?** ☎ **+370 607 94868**
+**Klausimų ar reikia pagalbos?** ☎ **+370 694 01517**
 

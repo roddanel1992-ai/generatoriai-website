@@ -212,5 +212,5 @@ Po visų šių optimizacijų:
 
 ---
 
-**Klausimų ar reikia pagalbos?** Skambinkite: **+370 607 94868**
+**Klausimų ar reikia pagalbos?** Skambinkite: **+370 694 01517**
 

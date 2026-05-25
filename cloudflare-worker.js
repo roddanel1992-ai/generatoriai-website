@@ -200,7 +200,7 @@ async function handleRequest(request) {
       // Return more detailed error for debugging
       return new Response(JSON.stringify({ 
         success: false, 
-        message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868',
+        message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 694 01517',
         debug: {
           status: sendResponse.status,
           error: errorText
@@ -216,7 +216,7 @@ async function handleRequest(request) {
     
     return new Response(JSON.stringify({ 
       success: false, 
-      message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868 arba tavogeneratorius@gmail.com' 
+      message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 694 01517 arba tavogeneratorius@gmail.com' 
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }

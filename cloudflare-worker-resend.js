@@ -46,7 +46,7 @@ async function handleRequest(request) {
       console.error('RESEND_API_KEY_ENV not configured in Worker settings!')
       return new Response(JSON.stringify({ 
         success: false, 
-        message: '❌ Email sistema dar nekonfigūruota. Prašome susisiekti tiesiogiai: +370 607 94868'
+        message: '❌ Email sistema dar nekonfigūruota. Prašome susisiekti tiesiogiai: +370 694 01517'
       }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -204,7 +204,7 @@ async function handleRequest(request) {
       
       return new Response(JSON.stringify({ 
         success: false, 
-        message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868',
+        message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 694 01517',
         debug: sendResponse
       }), {
         status: 500,
@@ -217,7 +217,7 @@ async function handleRequest(request) {
     
     return new Response(JSON.stringify({ 
       success: false, 
-      message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 607 94868 arba tavogeneratorius@gmail.com',
+      message: '❌ Atsiprašome, įvyko techninė klaida. Prašome susisiekti tiesiogiai: +370 694 01517 arba tavogeneratorius@gmail.com',
       error: error.message
     }), {
       status: 500,
