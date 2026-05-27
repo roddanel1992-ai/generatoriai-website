@@ -88,10 +88,31 @@
   </url>
   
   <url>
-    <loc>https://www.tavogeneratorius.lt/paslaugos/garso-sistemos.html</loc>
-    <lastmod>2025-11-13</lastmod>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/elektros-instaliacija.html</loc>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/generatoriaus-integracija-su-inverteriu.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/generatoriai-daugiabuciams.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/paslaugos/generatorius-butui.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- English Homepage -->
@@ -175,10 +196,31 @@
   </url>
 
   <url>
-    <loc>https://www.tavogeneratorius.lt/en/paslaugos/sound-systems.html</loc>
-    <lastmod>2025-11-13</lastmod>
+    <loc>https://www.tavogeneratorius.lt/en/paslaugos/electrical-installation.html</loc>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/en/paslaugos/generator-inverter-integration.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/en/paslaugos/generators-for-apartment-buildings.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/en/paslaugos/generator-for-apartment.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- Russian Homepage -->
@@ -261,10 +303,74 @@
   </url>
 
   <url>
-    <loc>https://www.tavogeneratorius.lt/ru/paslaugos/sound-systems.html</loc>
-    <lastmod>2025-11-13</lastmod>
+    <loc>https://www.tavogeneratorius.lt/ru/paslaugos/electrical-installation.html</loc>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/ru/paslaugos/generator-inverter-integration.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/ru/paslaugos/generators-for-apartment-buildings.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/ru/paslaugos/generator-for-apartment.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Privacy & Cookies Policy Pages -->
+  <url>
+    <loc>https://www.tavogeneratorius.lt/privatumo-politika.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/slapuku-politika.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/en/privacy-policy.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/en/cookies-policy.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/ru/politika-konfidencialnosti.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tavogeneratorius.lt/ru/politika-cookies.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 
   <!-- Vilnius Pages -->
