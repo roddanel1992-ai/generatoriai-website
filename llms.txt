@@ -1,0 +1,56 @@
+# Tavo Generatorius
+
+> Profesionalūs generatorių montavimo, įrengimo, elektros instaliacijos ir automatinio perjungimo (ATS/ARĮ) sprendimai namams ir verslui visoje Lietuvoje. Įmonė įsikūrusi Vilniuje, dirba su privačiais klientais ir verslo objektais.
+
+## Kontaktai
+
+- Telefonas: +370 694 01517
+- El. paštas: tavogeneratorius@gmail.com
+- Adresas: Naugarduko g. 100, Vilnius, Lietuva
+- Darbo laikas: Pirmadienis–Penktadienis 08:00–18:00
+
+## Pagrindinės paslaugos
+
+- [Generatorių parinkimas ir konsultacijos](https://www.tavogeneratorius.lt/paslaugos/generatoriu-parinkimas.html): individualus generatoriaus parinkimas pagal poreikius, sąnaudas ir biudžetą
+- [Generatorių montavimas ir įrengimas](https://www.tavogeneratorius.lt/paslaugos/generatoriu-montavimas.html): pilnas generatorių montavimas su visa įranga, įskaitant ATS/ARĮ
+- [Elektros skydų pritaikymas](https://www.tavogeneratorius.lt/paslaugos/elektros-skydu-pritaikymas.html): elektros skydų konfigūravimas saugiam perjungimui į generatorių
+- [Elektros skydų surinkimas](https://www.tavogeneratorius.lt/paslaugos/elektros-skydo-surinkimas.html): naujų elektros skydų surinkimas ir priežiūra
+- [Išmanios valdymo sistemos](https://www.tavogeneratorius.lt/paslaugos/ismanios-valdymo-sistemos-generatoriams.html): Shelly ir nuotolinio valdymo sprendimai generatoriams
+- [Mokymai ir instruktavimas](https://www.tavogeneratorius.lt/paslaugos/mokymai-ir-instruktavimas.html): naudotojų apmokymas dirbti su generatoriais
+- [Priežiūra ir aptarnavimas](https://www.tavogeneratorius.lt/paslaugos/prieziura-ir-aptarnavimas.html): techninė priežiūra ir profilaktiniai darbai
+
+## Specializuoti sprendimai
+
+- [Elektros instaliacija](https://www.tavogeneratorius.lt/paslaugos/elektros-instaliacija.html): visų tipų elektros instaliacijos darbai, naujos linijos, EV charger, žaibosauga
+- [ATS ir ARĮ įrengimas](https://www.tavogeneratorius.lt/paslaugos/generatoriu-montavimas.html#ats-ari): automatiniai perjungimo įrenginiai (vienfaziai ir trifaziai, moduliniai, išoriniai, su nuotoliniu valdymu)
+- [Generatorių integracija su hibridiniais inverteriais](https://www.tavogeneratorius.lt/paslaugos/generatoriaus-integracija-su-inverteriu.html): Huawei SUN2000, Fronius GEN24, Solax X1/X3 Hybrid, Sungrow SH, Sofar Solar
+- [Generatoriai daugiabučiams ir komercinėms patalpoms](https://www.tavogeneratorius.lt/paslaugos/generatoriai-daugiabuciams.html): avariniai sprendimai biurams, parduotuvėms, viešbučiams, medicinos įstaigoms
+- [Generatoriai butams su balkono rozetėmis](https://www.tavogeneratorius.lt/paslaugos/generatorius-butui.html): kompaktiški inverteriniai generatoriai be papildomų laidų vedžiojimo
+- [Signalizacijos sistemos](https://www.tavogeneratorius.lt/paslaugos/signalizacija.html): apsaugos ir vaizdo stebėjimo sprendimai
+- [Interneto sprendimai](https://www.tavogeneratorius.lt/paslaugos/interneto-sprendimai.html): tinklo įranga ir saugumo priemonės
+
+## Kalbos
+
+Svetainė pateikta trimis kalbomis:
+- Lietuvių: https://www.tavogeneratorius.lt/
+- Anglų: https://www.tavogeneratorius.lt/en/
+- Rusų: https://www.tavogeneratorius.lt/ru/
+
+## Geografija
+
+Pagrindinė veiklos vieta – Vilnius, tačiau paslaugos teikiamos visoje Lietuvoje. Specializuotos srities lokalūs puslapiai:
+- [Generatoriai Vilniuje](https://www.tavogeneratorius.lt/vilnius/)
+
+## Teisinė informacija
+
+- [Privatumo politika](https://www.tavogeneratorius.lt/privatumo-politika.html): GDPR atitinkanti asmens duomenų politika
+- [Slapukų politika](https://www.tavogeneratorius.lt/slapuku-politika.html): naudojami slapukai ir jų valdymas
+
+## Užklausų formos
+
+- Kontaktų forma pagrindiniame puslapyje: https://www.tavogeneratorius.lt/#three
+- Google Forms užklausa: https://docs.google.com/forms/d/e/1FAIpQLScBMFri2Me5zApS39jFFAzrlbhacwVPvPQyBsRL4L-fX84xgA/viewform
+
+## Bendrosios žinios
+
+Įmonė specializuojasi inverteriniuose, dyzeliniuose ir benzininiuose generatoriuose, dirba pagal LST HD 60364 elektros instaliacijos standartą. Teikia 1 metų garantiją instaliacijos darbams.

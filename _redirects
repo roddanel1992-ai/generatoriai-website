@@ -1,0 +1,17 @@
+# Universal redirects file (Netlify, Cloudflare Pages, etc.)
+# If hosting on Cloudflare directly, configure these via Page Rules or Bulk Redirects
+
+# Force www version (canonical)
+https://tavogeneratorius.lt/*    https://www.tavogeneratorius.lt/:splat   301!
+http://tavogeneratorius.lt/*     https://www.tavogeneratorius.lt/:splat   301!
+http://www.tavogeneratorius.lt/* https://www.tavogeneratorius.lt/:splat   301!
+
+# /index.html -> / (avoid duplicate content)
+/index.html              /                              301!
+/en/index.html           /en/                           301!
+/ru/index.html           /ru/                           301!
+
+# Old sound-systems pages -> electrical-installation
+/paslaugos/garso-sistemos.html         /paslaugos/elektros-instaliacija.html      301!
+/en/paslaugos/sound-systems.html       /en/paslaugos/electrical-installation.html 301!
+/ru/paslaugos/sound-systems.html       /ru/paslaugos/electrical-installation.html 301!
