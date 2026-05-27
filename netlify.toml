@@ -20,6 +20,25 @@
   status = 301
   force = true
 
+# 301 redirects - sound-systems pages moved to electrical-installation
+[[redirects]]
+  from = "/paslaugos/garso-sistemos.html"
+  to = "/paslaugos/elektros-instaliacija.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/paslaugos/sound-systems.html"
+  to = "/en/paslaugos/electrical-installation.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ru/paslaugos/sound-systems.html"
+  to = "/ru/paslaugos/electrical-installation.html"
+  status = 301
+  force = true
+
 # Custom 404 error page
 [[redirects]]
   from = "/*"
